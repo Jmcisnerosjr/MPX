@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MPX · The MultiPlanetary Exchange</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E6ECF1;--ink:#14243A;--soft:#5A6B80;--line:#B9C5D2;--panel:#F3F6F9;--sig:#B7791F;--good:#2F7A6B;--bad:#C2412D;--sun:#E0A030;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1D30;--ink:#E4E9EF;--soft:#93A3B8;--line:#2A3E58;--panel:#152741;--sig:#F2C062;--good:#5FC4AE;--bad:#E8735E;--sun:#F2B544}}
+:root[data-theme="dark"]{--bg:#0F1D30;--ink:#E4E9EF;--soft:#93A3B8;--line:#2A3E58;--panel:#152741;--sig:#F2C062;--good:#5FC4AE;--bad:#E8735E;--sun:#F2B544}
+html{scroll-padding-top:calc(60px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.5}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.hd{max-width:1080px;margin:0 auto;padding:10px 16px 0;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:26px;letter-spacing:.03em}
+.logo span{color:var(--good)}
+.credit{font-size:12px;color:var(--soft)}
+nav{max-width:1080px;margin:0 auto;padding:0 8px;display:flex;gap:2px;overflow-x:auto}
+nav button{font:inherit;font-size:14px;font-weight:500;border:0;background:none;color:var(--soft);padding:10px 12px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+nav button[aria-current=true]{color:var(--ink);border-bottom-color:var(--good)}
+main{max-width:1080px;margin:0 auto;padding:16px}
+.view{display:none}.view.on{display:block}
+h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:38px;letter-spacing:.02em;line-height:1.05;margin:8px 0}
+h2{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:500;font-size:24px;margin:24px 0 6px}
+.sub{color:var(--soft);margin:0 0 12px;max-width:680px}
+.cols{display:grid;grid-template-columns:1fr;gap:20px}
+@media (min-width:900px){.cols{grid-template-columns:1fr 1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
+.cards b{display:block;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:24px;font-weight:600}
+.cards span{font-size:13px;color:var(--soft)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.steps div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+.steps div::before{counter-increment:s;content:counter(s);display:inline-block;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);text-align:center;font-weight:600;font-size:13px;line-height:24px;margin-bottom:6px}
+canvas{width:100%;display:block}
+#td-orb{aspect-ratio:1;max-width:560px;margin:0 auto}#td-chart{aspect-ratio:16/10}
+#tr-sky{aspect-ratio:16/10;border-radius:10px;background:#05070A}
+#nt-map{aspect-ratio:1;max-width:560px;margin:0 auto}
+.row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin:10px 0}
+.row>div{flex:1;min-width:130px}
+label{font-size:13px;color:var(--soft);display:block}
+select,button,input{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 10px;width:100%}
+button{cursor:pointer}
+button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:500}
+.seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{flex:1;border:0;border-radius:0;font-size:14px;padding:8px 4px}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:2px solid var(--sig);outline-offset:2px}
+.clock{display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums;font-size:14px;margin:6px 0}
+.clock b{font-weight:500;font-size:18px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-weight:500;text-align:left;color:var(--soft);font-size:12px;padding:4px}
+td{padding:6px 4px;border-top:1px solid var(--line);vertical-align:top;font-variant-numeric:tabular-nums}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.home td{font-weight:600}
+tr.f td{opacity:.35}
+.small{font-size:12px;color:var(--soft)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--soft);margin-top:4px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.bad{color:var(--bad)}.good{color:var(--good)}
+.msg{font-size:13px;min-height:1.5em;margin:4px 0}
+.note{color:var(--soft);font-size:13px;margin-top:16px}
+.say{font-size:16px;font-weight:600;line-height:1.35;min-height:44px;margin:6px 0}
+.led{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px}
+.led div{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+.led span{display:block;font-size:11px;color:var(--soft)}
+.led b{font-size:16px;font-variant-numeric:tabular-nums}
+.ticks{position:relative;height:8px;margin:6px 8px 0}
+.ticks i{position:absolute;top:0;width:2px;height:8px;background:var(--line);border-radius:1px}
+.ticks i.done{background:var(--good)}
+input[type=range]{padding:0;border:0;background:none;accent-color:var(--good)}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.big{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:30px;font-weight:600;font-variant-numeric:tabular-nums}
+ol.wf{margin:6px 0 0;padding-left:20px}ol.wf li{margin:4px 0}
+/* polish */
+body{background:radial-gradient(1200px 500px at 50% -200px,color-mix(in srgb,var(--good) 12%,transparent),transparent),var(--bg)}
+header{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:color-mix(in srgb,var(--bg) 88%,transparent)}
+nav button{border-radius:8px 8px 0 0;transition:color .15s}
+nav button:hover{color:var(--ink)}
+.card{box-shadow:0 1px 2px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05);border-radius:14px}
+.cards .card{transition:transform .15s}
+.cards .card:hover{transform:translateY(-2px)}
+button{transition:background .15s,border-color .15s,transform .05s}
+button:active{transform:translateY(1px)}
+button.primary:hover{filter:brightness(1.1)}
+.hero{position:relative;overflow:hidden;border-radius:18px;padding:34px 26px 28px;margin:8px 0 18px;color:#EAF1F7;
+ background:radial-gradient(600px 300px at 85% 10%,rgba(95,196,174,.35),transparent),radial-gradient(500px 260px at 10% 100%,rgba(242,192,98,.25),transparent),linear-gradient(160deg,#0B1626,#132A44)}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 10% 20%,#fff8,transparent),radial-gradient(1px 1px at 30% 70%,#fff6,transparent),radial-gradient(1.5px 1.5px at 60% 30%,#fff9,transparent),radial-gradient(1px 1px at 80% 60%,#fff6,transparent),radial-gradient(1px 1px at 45% 85%,#fff5,transparent),radial-gradient(1.5px 1.5px at 90% 15%,#fff8,transparent);pointer-events:none}
+.hero h1{color:#fff;font-size:44px;margin:0 0 10px;position:relative}
+.hero p{color:#C8D5E2;max-width:640px;margin:0 0 18px;position:relative}
+.cta{display:flex;gap:10px;flex-wrap:wrap;position:relative}
+.cta button{width:auto;border-radius:999px;padding:10px 18px;font-weight:600;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff}
+.cta button.go{background:#5FC4AE;border-color:#5FC4AE;color:#062018}
+.presets{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px}
+.presets button{width:auto;border-radius:999px;font-size:13px;padding:6px 12px}
+.presets span{font-size:12px;color:var(--soft);align-self:center;margin-right:4px}
+.tlegend{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin-top:6px;min-height:18px}
+.tlegend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+#tr-rows tr{cursor:pointer}#tr-rows tr:hover td{background:color-mix(in srgb,var(--good) 10%,transparent)}
+.kbd{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 5px;color:var(--soft)}
+@media (max-width:600px){.hero{padding:24px 18px}.hero h1{font-size:32px}h1{font-size:30px}}
+
+.pfgrid{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:800px){.pfgrid{grid-template-columns:260px 1fr}}
+.pftotal .big{font-size:40px}
+.zoombtns button{margin-right:4px;padding:6px 12px}
+#tr-sky{cursor:grab;touch-action:none}
+.tlegend span{display:inline-flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 4px 3px 10px}
+.tlegend button{width:auto;border:0;background:none;padding:0 6px;font-size:15px;line-height:1;color:var(--soft)}
+.tlegend button:hover{color:var(--bad)}
+.trade{margin-top:12px}
+.trade .th{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.trade .th i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.trade .th .x{margin-left:auto;width:auto;padding:3px 10px}
+.trade details{margin-top:8px}.trade summary{cursor:pointer;font-size:13px;color:var(--soft)}
+.trade table tr{cursor:pointer}.trade tr.now td{background:color-mix(in srgb,var(--good) 14%,transparent)}
+.ptrade{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--line);font-size:14px;color:var(--ink)}
+.ptrade i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.ptrade .pill{margin-left:auto}
+footer{max-width:1080px;margin:24px auto 0;padding:16px;color:var(--soft);font-size:12px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd"><div class="logo">MP<span>X</span> · The MultiPlanetary Exchange</div></div>
+  <nav aria-label="Sections"><button data-v="home" aria-current="true">Home</button><button data-v="market">Market</button><button data-v="trace">Make a trade</button><button data-v="network">Network</button><button data-v="risk">Risk</button></nav>
+</header>
+<main>
+<!-- HOME -->
+<section class="view on" id="v-home">
+  <div class="hero"><h1>One exchange for nine worlds, running at the speed of light</h1>
+  <p>MPX clears trades for Mercury, Venus, Earth, Mars, Ceres, Jupiter, Saturn, Uranus and Neptune. Every message crosses the solar system through two relays, can be lost on the way, and arrives hours late from the outer planets. MPX is built so that trading stays fair, money moves exactly once, and the network never goes dark.</p>
+  <div class="cta"><button class="go" data-goto="trace">Make a trade</button><button data-goto="market">Watch the market</button><button data-goto="network">See the network</button></div></div>
+  <h2>Your portfolio</h2>
+  <p class="small" id="pf-asof">Credits on every settlement. Trades you make move them in real time.</p>
+  <div class="pfgrid">
+    <div class="card pftotal"><span class="small">Total value</span><div class="big" id="pf-total">45,000</div><div class="small" id="pf-chg"></div></div>
+    <div class="cards" id="pf-cards" style="margin:0"></div>
+  </div>
+  <div class="cols">
+    <div><h2 style="font-size:19px">Cash by settlement</h2><div class="tw"><table><thead><tr><th>Settlement</th><th class="n">Cash</th><th class="n">In flight out</th></tr></thead><tbody id="pf-cash"></tbody></table></div></div>
+    <div><h2 style="font-size:19px">Your trades</h2><div id="pf-trades" class="small">No trades yet. <button data-goto="trace" style="width:auto;padding:4px 10px">Make a trade</button></div></div>
+  </div>
+  <h2>The network at a glance</h2>
+  <div class="cards">
+    <div class="card"><b>2 relays</b><span>on one orbit, 90° apart. The Sun can never block both from any planet.</span></div>
+    <div class="card"><b>4.2 hours</b><span>for a message from Neptune to reach Earth today, and up to 45% of launches are lost.</span></div>
+    <div class="card"><b>Every 90 min</b><span>a fair batch auction at Earth; every 6 hours the outer planets join.</span></div>
+    <div class="card"><b>600 a day</b><span>messages for the whole system. MPX fits inside on its busiest day.</span></div>
+  </div>
+  <h2>How a trade works</h2>
+  <div class="steps">
+    <div><b>You send copies.</b><br><span class="small">Your order leaves as several independent copies, enough that one arrives on time 99.5% of the time.</span></div>
+    <div><b>A light-cone deadline.</b><br><span class="small">Each batch accepts your order only if it could have left before the cutoff, so nobody trades on news that hadn't reached them.</span></div>
+    <div><b>One fair price.</b><br><span class="small">The batch clears at Earth at a single price for everyone in it.</span></div>
+    <div><b>Exactly once.</b><br><span class="small">Money is held at the source, credited once at the destination, and only the destination can say it never arrived.</span></div>
+  </div>
+  <h2>Every settlement, right now</h2>
+  <p class="small" id="hm-when">Routes to the Earth hub at hour 0 of the model.</p>
+  <div class="tw"><table><thead><tr><th>Settlement</th><th>Route to Earth</th><th class="n">One-way</th><th class="n">Copies</th><th class="n">On time</th><th>Batch</th></tr></thead><tbody id="hm-rows"></tbody></table></div>
+  <div class="row" style="max-width:520px"><div><label for="hm-h">Model hour: <b id="hm-hl">0</b></label><input type="range" id="hm-h" value="0" min="0" max="17520" step="24" style="width:100%"></div></div>
+  <div class="note">Make a trade to watch your money cross the solar system; your portfolio above updates as each one settles.</div>
+</section>
+
+<!-- MARKET -->
+<section class="view" id="v-market">
+  <h1>One trading day</h1>
+  <p class="sub">The same stock trades on every settlement's market. News breaks somewhere and travels at light speed, so each market reprices only when it arrives.</p>
+  <div class="cols">
+    <div>
+      <div class="clock"><span>Session <b id="td-tclock">00:00:00</b></span><span id="td-uclock" class="small"></span></div>
+      <div class="scaletog seg" role="group" aria-label="Map scale" style="max-width:300px;margin:0 0 8px"><button data-scale="false" aria-pressed="true">Compressed</button><button data-scale="true" aria-pressed="false">True scale</button></div><canvas id="td-orb" aria-label="Orrery with news and orders in flight"></canvas>
+      <div class="row">
+        <div><button class="primary" id="td-play">Play</button></div>
+        <div style="flex:2"><div class="seg" id="td-seg" role="group" aria-label="Speed"><button data-s="120">2 min/s</button><button data-s="600" aria-pressed="true">10 min/s</button><button data-s="3600">1 h/s</button></div></div>
+      </div>
+      <div class="row">
+        <div><label for="td-day">Session starts at hour <b id="td-dayl">0</b></label><input type="range" id="td-day" min="0" max="8760" step="24" value="0" style="width:100%"></div>
+        <div><label>&nbsp;</label><button id="td-reroll">New day, new news</button></div>
+      </div>
+    </div>
+    <div>
+      <h2 style="margin-top:0">The same stock, nine prices</h2>
+      <canvas id="td-chart" aria-label="Price on each settlement's market over the session"></canvas>
+      <div class="legend" id="td-legend"></div>
+      <div class="clock"><span class="small">Widest gap between markets right now</span><b id="td-gap">0.00%</b></div>
+      <h2>Trade from your settlement</h2>
+      <div class="row">
+        <div><label for="td-home">You are on</label><select id="td-home"></select></div>
+        <div><label for="td-venue">Send order to</label><select id="td-venue"><option value="hub">Earth hub, batch auction</option><option value="local">Your local market</option></select></div>
+      </div>
+      <div class="row"><div><button class="primary" id="td-buy">Buy 1 share</button></div><div><button id="td-sell">Sell 1 share</button></div></div>
+      <div class="msg" id="td-msg"></div>
+    </div>
+  </div>
+  <div class="cols">
+    <div><h2>What you see from here</h2><div class="tw"><table><thead><tr><th>Market</th><th class="n">What you see</th><th class="n">Actual price now</th></tr></thead><tbody id="td-view"></tbody></table></div></div>
+    <div><h2>Your orders</h2><div class="tw"><table><tbody id="td-log"></tbody></table></div>
+    <div class="clock"><span class="small">Total slippage versus what you saw</span><b id="td-slip">0.00</b></div></div>
+  </div>
+</section>
+
+<!-- TRACE -->
+<section class="view" id="v-trace">
+  <h1>Make a trade</h1>
+  <p class="sub">Choose a product and send it. Watch every packet cross the solar system, see what each party knows, and follow your money until it settles.</p>
+  <div class="cols">
+    <div class="card">
+      <div class="row" style="margin-top:0">
+        <div><label for="tr-prod">Product</label><select id="tr-prod"><option value="transfer">Transfer</option><option value="spot">Buy shares (spot)</option><option value="futures">Futures to expiry</option><option value="swap">Cross-planet swap</option><option value="call">Margin call</option></select></div>
+        <div><label for="tr-amt" id="tr-amtl">Amount (credits)</label><input id="tr-amt" type="number" value="100" min="1"></div>
+      </div>
+      <div class="row">
+        <div><label for="tr-from">From</label><select id="tr-from"></select></div>
+        <div id="tr-toBox"><label for="tr-to">To</label><select id="tr-to"></select></div>
+        <div><label for="tr-loss">Packet loss</label><select id="tr-loss"><option value="0">None</option><option value="1">Real rates</option></select></div>
+      </div>
+      <div class="row"><div><label for="tr-start">Send at model hour <b id="tr-startl">0</b></label><input id="tr-start" type="range" min="0" max="8760" step="1" value="0" style="width:100%"></div></div>
+      <div class="row"><div><button class="primary" id="tr-run">Make trade</button></div><div style="flex:0 0 auto;min-width:0"><button id="tr-clear" style="width:auto">Remove all</button></div></div>
+      <div class="msg" id="tr-msg"></div>
+    </div>
+    <div class="card">
+      <div class="small" style="margin-bottom:6px">Quick picks</div>
+      <div class="presets" style="margin:0">
+        <button data-preset="transfer,Neptune,Mars,0,100">Transfer Neptune → Mars</button>
+        <button data-preset="transfer,Neptune,Mars,1,100">Same, with real loss</button>
+        <button data-preset="spot,Neptune,Mars,0,10">Buy 10 shares from Neptune</button>
+        <button data-preset="spot,Mars,Neptune,0,10">Buy 10 shares from Mars</button>
+        <button data-preset="swap,Earth,Neptune,0,100">Earth ⇄ Neptune swap</button>
+        <button data-preset="call,Neptune,Mars,1,100">Margin call to Neptune</button>
+      </div>
+      <div class="small" style="margin-top:10px">Each trade you make stays on the map in its own color. Remove any of them with its ×.</div>
+    </div>
+  </div>
+  <div class="row" style="align-items:center;margin-top:16px">
+    <div style="flex:0 0 auto;min-width:0"><div class="scaletog seg" role="group" aria-label="Map scale" style="width:260px"><button data-scale="false" aria-pressed="true">Compressed</button><button data-scale="true" aria-pressed="false">True scale</button></div></div>
+    <div style="flex:0 0 auto;min-width:0" class="zoombtns"><button data-z="in" style="width:auto">+</button><button data-z="out" style="width:auto">−</button><button data-z="reset" style="width:auto">Reset view</button></div>
+    <div class="small" style="flex:1">Scroll to zoom, drag to pan, double-click to reset.</div>
+  </div>
+  <canvas id="tr-sky" aria-label="Map with your trades' packets in flight"></canvas>
+  <div class="tlegend" id="tr-legend"></div>
+  <div class="ticks" id="tr-ticks"></div>
+  <input type="range" id="tr-scrub" min="0" max="1000" value="0" style="width:100%" aria-label="Scrub time">
+  <div class="row" style="margin-top:4px;align-items:center">
+    <div style="flex:0 0 auto;min-width:0"><button class="primary" id="tr-play" style="width:auto">Pause</button></div>
+    <div style="flex:0 0 auto;min-width:0"><button id="tr-next" style="width:auto">Next step</button></div>
+    <div style="flex:0 0 auto;min-width:0"><select id="tr-spd" style="width:auto" aria-label="Speed"><option value="0.5">0.5 h/s</option><option value="2" selected>2 h/s</option><option value="8">8 h/s</option></select></div>
+    <div class="clock" style="flex:1;justify-content:flex-end;margin:0"><span id="tr-clock">Hour 0.000</span></div>
+  </div>
+  <div id="tr-trades"></div>
+</section>
+
+<!-- NETWORK -->
+<section class="view" id="v-network">
+  <h1>The network</h1>
+  <p class="sub">Every settlement links to both relays, and the relays link to each other. Any line passing within 0.10 AU of the Sun is blocked, so links open and close as everything moves.</p>
+  <div class="cols">
+    <div>
+      <div class="scaletog seg" role="group" aria-label="Map scale" style="max-width:300px;margin:0 0 8px"><button data-scale="false" aria-pressed="true">Compressed</button><button data-scale="true" aria-pressed="false">True scale</button></div><div class="zoombtns" style="margin:0 0 8px"><button data-nz="in" style="width:auto">+</button><button data-nz="out" style="width:auto">−</button><button data-nz="reset" style="width:auto">Reset view</button> <span class="small">Scroll to zoom, drag to pan.</span></div><canvas id="nt-map" aria-label="Network map with open and blocked links" style="cursor:grab;touch-action:none"></canvas>
+      <div class="row"><div style="flex:3"><label for="nt-t">Model hour</label><input type="range" id="nt-t" min="0" max="17520" step="6" value="0" style="width:100%"></div><div style="flex:0 0 auto;min-width:0"><button id="nt-play" style="width:auto">Play</button></div></div>
+      <div class="clock"><span class="pill" id="nt-closed">0 links blocked</span><span class="pill" id="nt-both">no settlement loses both relays</span></div>
+    </div>
+    <div>
+      <h2 style="margin-top:0">Best route to Earth at <span id="nt-hr">hour 0</span></h2>
+      <div class="tw"><table><thead><tr><th>Settlement</th><th>Route</th><th class="n">One-way</th><th class="n">First try</th></tr></thead><tbody id="nt-rows"></tbody></table></div>
+      <div class="note">The relays share one orbit, 90° apart, so the line between them always passes 2 AU from the Sun, and the Sun can block at most a narrow cone around each planet. One relay is always open, from every settlement, at every moment.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RISK -->
+<section class="view" id="v-risk">
+  <h1>Risk and capital</h1>
+  <p class="sub">A default is only discovered when a margin call goes unanswered, and from Neptune that takes hours. MPX sizes margin for the slowest round trip, adds fat-tail protection, and keeps every default resource at the hub.</p>
+  <div class="cols">
+    <div class="card">
+      <h2 style="margin-top:0">Margin calculator</h2>
+      <div class="row"><div><label for="rk-s">Settlement</label><select id="rk-s"></select></div><div><label for="rk-n">Position (credits)</label><input id="rk-n" type="number" value="1000000" min="0" step="1000"></div><div><label for="rk-v">Volatility (%/yr)</label><input id="rk-v" type="number" value="30" min="1" step="1"></div></div>
+      <div class="cards" id="rk-out"></div>
+      <div class="small">Margin period = worst round trip to Earth + 1 h grace + 1.5 h to close out. Initial margin = 2.62 × volatility × √(period) × position, where 2.62 covers 99% of fat-tailed (Student-t) price moves.</div>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">If a member defaults</h2>
+      <ol class="wf">
+        <li>Its own initial margin</li><li>Its unpaid variation margin</li><li>Its share of the default fund</li><li>MPX's own capital (25% of the fund)</li><li>Other members' fund shares, sized to survive the two largest defaults at a 6-sigma move</li><li>Assessments, prefunded at the hub for outer planets</li><li>Recovery: haircuts on gains, then partial tear-up</li>
+      </ol>
+      <div class="small" style="margin-top:8px">Members also hold liquid resources of 30% of notional. An isolated member is hedged, not defaulted.</div>
+    </div>
+  </div>
+  <h2>Daily message budget</h2>
+  <div class="cards">
+    <div class="card"><b>468</b><span>messages on the busiest day in 200 years</span></div>
+    <div class="card"><b>132</b><span>held in reserve for margin calls, re-routing and transfers</span></div>
+    <div class="card"><b>600</b><span>the system-wide daily limit</span></div>
+  </div>
+</section>
+</main>
+<footer>MPX runs on a model of the solar system with fixed orbits, light-time of 8.317 minutes per AU, a 0.10 AU solar exclusion, two relays, lossy launches and a 600-message daily quota. Prices and news in the Market tab are simulated.</footer>
+
+<script>
+(()=>{
+const EL=[["Mercury", 0.3870972529131369, 0.2056391287772749, 7.003376739406431, 48.297318639624, 29.20135514716107, 158.0266899039272, 4.092361365466381], ["Venus", 0.7233373086832101, 0.006766699201958504, 3.394338290322743, 76.60588195307673, 54.91973283689823, 208.0494051543445, 1.602113597941237], ["Earth", 0.9995049145908903, 0.0170555221835682, 0.005393396667292408, 176.6206272557732, 287.7740198972571, 256.1404947503081, 0.9863415430204476], ["Mars", 1.523653063744921, 0.09341941434148233, 1.847457546777179, 49.4809684852205, 286.6331106769099, 94.16517233830973, 0.5240527569294179], ["Ceres", 2.76595234413872, 0.07975569623146875, 10.58746044459709, 80.24898646132206, 73.20145111086198, 297.0156759369557, 0.2142579938193311], ["Jupiter", 5.203098453421111, 0.04811720556041555, 1.303413902448638, 100.5134326632505, 273.6311561624746, 111.2497988019995, 0.08308415302323827], ["Saturn", 9.540477417533626, 0.05517598618913071, 2.48865020495108, 113.7050072792812, 338.628023118351, 284.392757877648, 0.03345114340526617], ["Uranus", 19.26360048570033, 0.04751104687977423, 0.7703427738092589, 74.05272032650134, 92.45259678574354, 261.3717598156659, 0.01165755195958871], ["Neptune", 30.06405108492006, 0.009773760473970381, 1.775337461214952, 131.9885078888837, 281.8372243167906, 309.6507012967161, 0.005979212745910185], ["Relay A", 2.8284271247461903, 0, 0, 0, 0, 45, 0.2071984888583124], ["Relay B", 2.8284271247461903, 0, 0, 0, 0, 135, 0.2071984888583124]];
+const D2R=Math.PI/180,LTC=8.317/60,EXCL=0.10,SECH=1/3600,$=id=>document.getElementById(id);
+const SET=["Mercury","Venus","Earth","Mars","Ceres","Jupiter","Saturn","Uranus","Neptune"],REL=["Relay A","Relay B"],FAST=new Set(["Mercury","Venus","Earth","Mars","Ceres","Jupiter"]);
+const COL={Mercury:"#9C8F84",Venus:"#D9B36C",Earth:"#4D8FD1",Mars:"#C9573A",Ceres:"#A7A9A0",Jupiter:"#C98E5B",Saturn:"#D8BE85",Uranus:"#7FC6CF",Neptune:"#4F6FD0"};
+const B={};EL.forEach(r=>{const[n,a,e,i,O,w,M0,nd]=r,ci=Math.cos(i*D2R),si=Math.sin(i*D2R),cO=Math.cos(O*D2R),sO=Math.sin(O*D2R),cw=Math.cos(w*D2R),sw=Math.sin(w*D2R);
+ B[n]={a,e,M0,nd,P:[cO*cw-sO*sw*ci,-cO*sw-sO*cw*ci],Q:[sO*cw+cO*sw*ci,-sO*sw+cO*cw*ci],R:[sw*si,cw*si]}});
+function pos(n,h){const b=B[n],M=((b.M0+b.nd*h/24)%360)*D2R;let E=M;for(let k=0;k<30;k++){const d=(E-b.e*Math.sin(E)-M)/(1-b.e*Math.cos(E));E-=d;if(Math.abs(d)<1e-15)break}
+ const x=b.a*(Math.cos(E)-b.e),y=b.a*Math.sqrt(1-b.e*b.e)*Math.sin(E);return[b.P[0]*x+b.P[1]*y,b.Q[0]*x+b.Q[1]*y,b.R[0]*x+b.R[1]*y]}
+const dist=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2]);
+function clr(p,q){const d=[q[0]-p[0],q[1]-p[1],q[2]-p[2]],dd=d[0]*d[0]+d[1]*d[1]+d[2]*d[2];let s=-(p[0]*d[0]+p[1]*d[1]+p[2]*d[2])/dd;s=Math.max(0,Math.min(1,s));return Math.hypot(p[0]+s*d[0],p[1]+s*d[1],p[2]+s*d[2])}
+function light(a,b,te){const pa=pos(a,te);let ta=te+LTC*dist(pa,pos(b,te));for(let k=0;k<12;k++){const n=te+LTC*dist(pa,pos(b,ta));if(Math.abs(n-ta)<1e-10){ta=n;break}ta=n}return{ta,pa,pb:pos(b,ta)}}
+const MT=[["Relay B","Neptune",2,26],["Relay B","Ceres",240,264]];
+function hop(a,b,ready){let te=ready+SECH;for(let g=0;g<4;g++){const L=light(a,b,te);if(clr(L.pa,L.pb)<EXCL)return null;
+ const m=MT.find(w=>((w[0]===a&&w[1]===b)||(w[0]===b&&w[1]===a))&&te<w[3]&&L.ta>=w[2]);if(!m)return{ta:L.ta,d:dist(L.pa,L.pb)};te=m[3]+SECH}return null}
+function route(x,y,h){if(x===y)return{d:0,path:[x],f:1};let best=null;
+ for(const r of [[x,"Relay A",y],[x,"Relay B",y],[x,"Relay A","Relay B",y],[x,"Relay B","Relay A",y]]){let ready=h,f=1,ok=true;for(let k=0;k<r.length-1;k++){const s=hop(r[k],r[k+1],ready);if(!s){ok=false;break}f*=Math.exp(-0.02*s.d);ready=s.ta+(REL.includes(r[k+1])?SECH:0)}
+  if(ok&&(!best||ready-h<best.d))best={d:ready-h,path:r,f}}return best}
+const dur=h=>h<1?Math.round(h*60)+" min":Math.floor(h)+" h "+Math.round((h%1)*60)+" min";
+const kOf=f=>f>=1?1:Math.ceil(Math.log(0.005)/Math.log(1-f));
+const rtxt=p=>p.map(s=>s.replace("Relay ","R")).join(" → ");
+// HOME table
+function home(){const h=Math.max(0,+$("hm-h").value||0);$("hm-when").textContent=`Routes to the Earth hub at hour ${h} of the model.`;
+ $("hm-rows").innerHTML=SET.map(x=>{if(x==="Earth")return`<tr class="home"><td>Earth</td><td>the hub itself</td><td class="n">1 s</td><td class="n">1</td><td class="n">100%</td><td>fast, 1.5 h</td></tr>`;
+  const r=route(x,"Earth",h);if(!r)return`<tr><td>${x}</td><td colspan="5">held for maintenance</td></tr>`;const k=kOf(r.f);
+  return`<tr><td>${x}</td><td>${rtxt(r.path)}</td><td class="n">${dur(r.d)}</td><td class="n">${k}</td><td class="n">${((1-Math.pow(1-r.f,k))*100).toFixed(2)}%</td><td>${FAST.has(x)?"fast, 1.5 h":"full, 6 h"}</td></tr>`}).join("")}
+$("hm-h").oninput=e=>{$("hm-hl").textContent=e.target.value};$("hm-h").onchange=home;home();
+// NETWORK map
+const cv=$("nt-map"),cx=cv.getContext("2d");let nt=0,ntPlay=null,ntTimer=null;
+function css(k){return getComputedStyle(document.documentElement).getPropertyValue(k).trim()}
+let NZ=1,NPX=0,NPY=0;
+function drawNet(){const dpr=devicePixelRatio||1,W=cv.clientWidth||500;cv.width=W*dpr;cv.height=W*dpr;cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,W);
+ const O=W/2,OX=O+NPX,OY=O+NPY,R=W/2-18,rr=r=>NZ*(window.MPX_TRUE?R*r/30.6:R*Math.pow(r/30.4,.42)),S={};
+ for(const n of SET.concat(REL)){const p=pos(n,nt),L=Math.atan2(p[1],p[0]),r=rr(Math.hypot(p[0],p[1]));S[n]=[OX+r*Math.cos(L),OY-r*Math.sin(L),p]}
+ cx.strokeStyle=css("--line");cx.lineWidth=1;[.39,.72,1,1.52,2.77,5.2,9.54,19.26,30.06].forEach(a=>{cx.beginPath();cx.arc(OX,OY,rr(a),0,7);cx.stroke()});
+ cx.setLineDash([4,4]);cx.strokeStyle=css("--good");cx.beginPath();cx.arc(OX,OY,rr(2.828),0,7);cx.stroke();cx.setLineDash([3,2]);cx.strokeStyle=css("--bad");cx.beginPath();cx.arc(OX,OY,Math.max(rr(.1),window.MPX_TRUE?2:7),0,7);cx.stroke();cx.setLineDash([]);
+ cx.fillStyle=css("--sun");cx.beginPath();cx.arc(OX,OY,5,0,7);cx.fill();
+ const CURVE=(a,b)=>{for(let s=0;s<=32;s++){const q=s/32,L=[a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q],an=Math.atan2(L[1],L[0]),r=rr(Math.hypot(L[0],L[1])),X=OX+r*Math.cos(an),Y=OY-r*Math.sin(an);s?cx.lineTo(X,Y):cx.moveTo(X,Y)}};let closed=0,both=0;
+ for(const x of SET){let blk=0;for(const r of REL){const ok=clr(S[x][2],S[r][2])>=EXCL;if(!ok){closed+=2;blk++}
+  cx.strokeStyle=ok?css("--good"):css("--bad");cx.globalAlpha=ok?.4:1;cx.lineWidth=ok?.8:1.6;cx.setLineDash(ok?[]:[4,3]);cx.beginPath();CURVE(S[x][2],S[r][2]);cx.stroke()}if(blk>1)both++}
+ cx.setLineDash([]);cx.globalAlpha=1;cx.strokeStyle=css("--good");cx.lineWidth=1.6;cx.beginPath();CURVE(S["Relay A"][2],S["Relay B"][2]);cx.stroke();
+ for(const n of SET.concat(REL)){const[x,y]=S[n],rel=REL.includes(n);if(rel){cx.fillStyle=css("--good");cx.save();cx.translate(x,y);cx.rotate(Math.PI/4);cx.fillRect(-4.5,-4.5,9,9);cx.restore()}
+  else{cx.fillStyle=COL[n];cx.beginPath();cx.arc(x,y,n==="Earth"?6:4.5,0,7);cx.fill()}
+  cx.fillStyle=css("--ink");cx.font=`${rel||n==="Earth"?600:500} 12px 'IBM Plex Sans',sans-serif`;const lab=n+(n==="Earth"?" (hub)":""),rt=x>=OX&&x+12+cx.measureText(lab).width<W;cx.textAlign=rt?"left":"right";cx.fillText(lab,rt?x+9:x-9,y-8)}
+ cx.save();cx.font="500 11px 'IBM Plex Sans',sans-serif";cx.textAlign="left";cx.fillStyle="rgba(128,140,155,.95)";cx.fillText((window.MPX_TRUE?"True scale: light paths are straight":"Distances compressed to fit: straight light paths appear curved")+(NZ>1?"  ·  zoom ×"+NZ.toFixed(1):""),8,W-8);cx.restore();$("nt-closed").textContent=`${closed} link${closed===1?"":"s"} blocked now`;$("nt-both").textContent=both?`both relays blocked for ${both}`:"no settlement loses both relays";
+ $("nt-hr").textContent=`hour ${nt}`}
+function netRows(){$("nt-rows").innerHTML=SET.filter(x=>x!=="Earth").map(x=>{const r=route(x,"Earth",nt);return r?`<tr><td>${x}</td><td>${rtxt(r.path)}</td><td class="n">${dur(r.d)}</td><td class="n">${(r.f*100).toFixed(1)}%</td></tr>`:`<tr><td>${x}</td><td colspan="3">held</td></tr>`}).join("")}
+$("nt-t").oninput=e=>{nt=+e.target.value;drawNet();clearTimeout(ntTimer);ntTimer=setTimeout(netRows,120)};
+$("nt-play").onclick=()=>{if(ntPlay){clearInterval(ntPlay);ntPlay=null;$("nt-play").textContent="Play";netRows();return}$("nt-play").textContent="Pause";
+ ntPlay=setInterval(()=>{if(!$("v-network").classList.contains("on"))return;nt=(nt+24)%17520;$("nt-t").value=nt;drawNet()},60)};
+addEventListener("resize",()=>{if($("v-network").classList.contains("on"))drawNet()});
+// RISK calculator
+const RT={Mercury:2.796,Venus:2.817,Earth:0,Mars:2.916,Ceres:3.057,Jupiter:3.669,Saturn:4.827,Uranus:7.579,Neptune:10.386};
+SET.forEach(k=>{const o=document.createElement("option");o.value=k;o.textContent=k;$("rk-s").appendChild(o)});$("rk-s").value="Neptune";
+function risk(){const s=$("rk-s").value,N=Math.max(0,+$("rk-n").value||0),sig=Math.max(0.01,(+$("rk-v").value||30)/100),M=RT[s]+1+1.5,f=sig*Math.sqrt(M/8760),im=2.62*f*N,st=(6-2.62)*f*N;
+ const c=(v)=>v.toLocaleString(undefined,{maximumFractionDigits:0});
+ $("rk-out").innerHTML=[["Margin period",M.toFixed(1)+" h"],["Initial margin",c(im)+" ("+(im/N*100||0).toFixed(2)+"%)"],["Stress loss beyond margin",c(st)],["Liquidity to hold",c(0.3*N)]].map(x=>`<div class="card"><b>${x[1]}</b><span>${x[0]}</span></div>`).join("")}
+["rk-s","rk-n","rk-v"].forEach(id=>$(id).oninput=risk);risk();
+// NAV
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>x.setAttribute("aria-current",x===b));
+ document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on",v.id==="v-"+b.dataset.v));scrollTo(0,0);
+ if(b.dataset.v==="network"){drawNet();netRows()}window.dispatchEvent(new Event("resize"))});
+window.__ntInit=()=>{drawNet();netRows()};
+function nzoom(f,mx,my){const W=cv.clientWidth||500,nz=Math.max(1,Math.min(400,NZ*f)),k=nz/NZ;NPX=(mx-W/2)-k*((mx-W/2)-NPX);NPY=(my-W/2)-k*((my-W/2)-NPY);NZ=nz;if(NZ===1){NPX=0;NPY=0}drawNet()}
+cv.addEventListener("wheel",e=>{e.preventDefault();const r=cv.getBoundingClientRect();nzoom(Math.exp(-e.deltaY*0.0015),e.clientX-r.left,e.clientY-r.top)},{passive:false});
+let ndrag=null;cv.addEventListener("pointerdown",e=>{ndrag=[e.clientX,e.clientY,NPX,NPY];cv.setPointerCapture(e.pointerId);cv.style.cursor="grabbing"});
+cv.addEventListener("pointermove",e=>{if(ndrag){NPX=ndrag[2]+e.clientX-ndrag[0];NPY=ndrag[3]+e.clientY-ndrag[1];drawNet()}});
+cv.addEventListener("pointerup",()=>{ndrag=null;cv.style.cursor="grab"});cv.addEventListener("dblclick",()=>{NZ=1;NPX=0;NPY=0;drawNet()});
+document.querySelectorAll("[data-nz]").forEach(b=>b.onclick=()=>{const W=cv.clientWidth||500;if(b.dataset.nz==="reset"){NZ=1;NPX=0;NPY=0;drawNet()}else nzoom(b.dataset.nz==="in"?1.6:1/1.6,W/2,W/2)});
+window.MPX_TRUE=false;document.querySelectorAll(".scaletog button").forEach(b=>b.onclick=()=>{window.MPX_TRUE=b.dataset.scale==="true";
+ document.querySelectorAll(".scaletog button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.scale===b.dataset.scale)));
+ if($("v-network").classList.contains("on"))drawNet();window.dispatchEvent(new Event("resize"))});
+document.querySelectorAll("[data-goto]").forEach(b=>b.onclick=()=>{const t=document.querySelector(`nav button[data-v="${b.dataset.goto}"]`);if(t)t.click()});
+})();
+
+</script>
+<script>
+(()=>{
+const EL=[["Mercury", 0.3870972529131369, 0.2056391287772749, 7.003376739406431, 48.297318639624, 29.20135514716107, 158.0266899039272, 4.092361365466381], ["Venus", 0.7233373086832101, 0.006766699201958504, 3.394338290322743, 76.60588195307673, 54.91973283689823, 208.0494051543445, 1.602113597941237], ["Earth", 0.9995049145908903, 0.0170555221835682, 0.005393396667292408, 176.6206272557732, 287.7740198972571, 256.1404947503081, 0.9863415430204476], ["Mars", 1.523653063744921, 0.09341941434148233, 1.847457546777179, 49.4809684852205, 286.6331106769099, 94.16517233830973, 0.5240527569294179], ["Ceres", 2.76595234413872, 0.07975569623146875, 10.58746044459709, 80.24898646132206, 73.20145111086198, 297.0156759369557, 0.2142579938193311], ["Jupiter", 5.203098453421111, 0.04811720556041555, 1.303413902448638, 100.5134326632505, 273.6311561624746, 111.2497988019995, 0.08308415302323827], ["Saturn", 9.540477417533626, 0.05517598618913071, 2.48865020495108, 113.7050072792812, 338.628023118351, 284.392757877648, 0.03345114340526617], ["Uranus", 19.26360048570033, 0.04751104687977423, 0.7703427738092589, 74.05272032650134, 92.45259678574354, 261.3717598156659, 0.01165755195958871], ["Neptune", 30.06405108492006, 0.009773760473970381, 1.775337461214952, 131.9885078888837, 281.8372243167906, 309.6507012967161, 0.005979212745910185], ["Relay A", 2.8284271247461903, 0, 0, 0, 0, 45, 0.2071984888583124], ["Relay B", 2.8284271247461903, 0, 0, 0, 0, 135, 0.2071984888583124]];
+const D2R=Math.PI/180,LTC=8.317/60,EXCL=0.10,H0=-5,H1=24,DAY=86400,STEP=120,SECH=1/3600;
+const P=[["Mercury","#9C8F84",.4],["Venus","#D9B36C",.6],["Earth","#4D8FD1",3],["Mars","#C9573A",1.5],["Ceres","#A7A9A0",.3],["Jupiter","#C98E5B",1],["Saturn","#D8BE85",.6],["Uranus","#7FC6CF",.3],["Neptune","#4F6FD0",.3]];
+const NODES=P.map(p=>p[0]).concat(["Relay A","Relay B"]),RA=9,RB=10,HUB=2,FAST=new Set([0,1,2,3,4,5]);
+const $=id=>document.getElementById(id);
+const B={};EL.forEach(r=>{const[n,a,e,i,O,w,M0,nd]=r,ci=Math.cos(i*D2R),si=Math.sin(i*D2R),cO=Math.cos(O*D2R),sO=Math.sin(O*D2R),cw=Math.cos(w*D2R),sw=Math.sin(w*D2R);
+ B[n]={a,e,M0,nd,P:[cO*cw-sO*sw*ci,-cO*sw-sO*cw*ci],Q:[sO*cw+cO*sw*ci,-sO*sw+cO*cw*ci],R:[sw*si,cw*si]}});
+function kep(n,h){const b=B[n],M=((b.M0+b.nd*h/24)%360)*D2R;let E=M;for(let k=0;k<30;k++){const d=(E-b.e*Math.sin(E)-M)/(1-b.e*Math.cos(E));E-=d;if(Math.abs(d)<1e-15)break}
+ const x=b.a*(Math.cos(E)-b.e),y=b.a*Math.sqrt(1-b.e*b.e)*Math.sin(E);return[b.P[0]*x+b.P[1]*y,b.Q[0]*x+b.Q[1]*y,b.R[0]*x+b.R[1]*y]}
+const pos=(k,h)=>kep(NODES[k],h),dist=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2]);
+function light(a,b,te){const pa=pos(a,te);let ta=te+LTC*dist(pa,pos(b,te));for(let k=0;k<12;k++){const n=te+LTC*dist(pa,pos(b,ta));if(Math.abs(n-ta)<1e-10){ta=n;break}ta=n}return{ta,pa,pb:pos(b,ta)}}
+function clr(p,q){const d=[q[0]-p[0],q[1]-p[1],q[2]-p[2]],dd=d[0]*d[0]+d[1]*d[1]+d[2]*d[2];let s=-(p[0]*d[0]+p[1]*d[1]+p[2]*d[2])/dd;s=Math.max(0,Math.min(1,s));return Math.hypot(p[0]+s*d[0],p[1]+s*d[1],p[2]+s*d[2])}
+const MT=[[RB,8,2,26],[RB,4,240,264]];
+function hop(a,b,ready){let te=ready+SECH;for(let g=0;g<4;g++){const L=light(a,b,te);if(clr(L.pa,L.pb)<EXCL)return null;
+ const m=MT.find(w=>((w[0]===a&&w[1]===b)||(w[0]===b&&w[1]===a))&&te<w[3]&&L.ta>=w[2]);if(!m)return{ta:L.ta,d:dist(L.pa,L.pb)};te=m[3]+SECH}return null}
+function route(x,y,h){if(x===y)return{d:0,path:[x],f:1};let best=null;
+ for(const r of [[x,RA,y],[x,RB,y],[x,RA,RB,y],[x,RB,RA,y]]){let ready=h,f=1,ok=true;for(let k=0;k<r.length-1;k++){const s=hop(r[k],r[k+1],ready);if(!s){ok=false;break}f*=Math.exp(-0.02*s.d);ready=s.ta+(r[k+1]>=RA?SECH:0)}
+  if(ok&&(!best||ready-h<best.d))best={d:ready-h,path:r,f}}return best||{d:Infinity,path:[x,y],f:0}}
+function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function gauss(r){return Math.sqrt(-2*Math.log(r()+1e-12))*Math.cos(2*Math.PI*r())}
+let HS=0,LT,EV,CUM,NZ,CH,ymin,ymax,simT=0,speed=600,playing=false,last=null,seed=7,orders=[],home=8,venue="hub",lossR=Math.random;
+const habs=t=>HS+t/3600;
+function lat(x,y,t){if(x===y)return 0;const h=Math.max(0,Math.min(H1-H0-1e-9,t/3600-H0)),i=Math.floor(h),f=h-i,a=LT[i][x][y].d,b=LT[i+1][x][y].d;
+ if(a===Infinity||b===Infinity)return(f<.5?a:b)*3600;return(a+(b-a)*f)*3600}
+function pathAt(x,y,t){const i=Math.round(Math.max(0,Math.min(H1-H0,t/3600-H0)));return LT[i][x][y].path}
+function priceRaw(k,t){const L=CUM[k];let lo=0,hi=L.t.length;while(lo<hi){const m=lo+hi>>1;if(L.t[m]<=t)lo=m+1;else hi=m}
+ const s=lo?L.c[lo-1]:0,z=NZ[k];return 100*Math.exp(s)*(1+.0003*(Math.sin(t*z[0]+z[3])+.6*Math.sin(t*z[1]+z[4])+.3*Math.sin(t*z[2]+z[5])))}
+function setup(){HS=Math.max(0,+$("td-day").value||0);
+ LT=[];for(let h=H0;h<=H1;h++){LT.push(P.map((p,x)=>P.map((q,y)=>route(x,y,habs(h*3600)))))}
+ const r=rng(seed);EV=[];
+ P.forEach((p,o)=>{let t=H0*3600;for(;;){t+=-Math.log(r()+1e-12)/p[2]*3600;if(t>=DAY)break;let J=gauss(r)*.0015;if(r()<.05)J*=4;EV.push({o,t,J,arr:P.map((q,k)=>t+lat(o,k,t))})}});
+ CUM=P.map((p,k)=>{const L=EV.map(e=>[e.arr[k],e.J]).filter(a=>a[0]<Infinity).sort((a,b)=>a[0]-b[0]);let s=0;return{t:L.map(a=>a[0]),c:L.map(a=>s+=a[1])}});
+ NZ=P.map(()=>[2*Math.PI/420,2*Math.PI/1380,2*Math.PI/3660,r()*6.28,r()*6.28,r()*6.28]);
+ CH=P.map((p,k)=>{const a=[];for(let t=0;t<=DAY;t+=STEP)a.push(priceRaw(k,t));return a});
+ ymin=Math.min(...CH.flat());ymax=Math.max(...CH.flat());const pad=(ymax-ymin)*.08||.5;ymin-=pad;ymax+=pad;simT=0;orders=[];renderLog();$("td-msg").textContent=""}
+function fmtT(s){s=Math.max(0,s);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=Math.floor(s%60);return [h,m,x].map(v=>String(v).padStart(2,"0")).join(":")}
+function fmtD(s){if(s<60)return s.toFixed(1)+" s";const h=Math.floor(s/3600),m=Math.round(s%3600/60);return h?h+" h "+m+" min":m+" min"}
+function css(){const c=getComputedStyle(document.documentElement);return k=>c.getPropertyValue(k).trim()}
+function sizeCanvas(cv){const dpr=devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;if(cv.width!==Math.round(W*dpr)){cv.width=W*dpr;cv.height=H*dpr}
+ const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);return [x,W,H]}
+function drawOrb(c){const cv=$("td-orb"),[cx,W]=sizeCanvas(cv);if(W<60)return;const R=W/2-16,O=W/2,h=habs(simT),rr=r=>window.MPX_TRUE?R*r/30.6:R*Math.pow(r/30.4,.42);
+ const scr=NODES.map((n,k)=>{const p=pos(k,h),L=Math.atan2(p[1],p[0]),r=rr(Math.hypot(p[0],p[1]));return[O+r*Math.cos(L),O-r*Math.sin(L)]});
+ cx.strokeStyle=c("--line");cx.lineWidth=1;[.39,.72,1,1.52,2.77,5.2,9.54,19.26,30.06].forEach(a=>{cx.beginPath();cx.arc(O,O,rr(a),0,7);cx.stroke()});
+ cx.setLineDash([4,4]);cx.strokeStyle=c("--good");cx.beginPath();cx.arc(O,O,rr(2.828),0,7);cx.stroke();cx.setLineDash([3,2]);cx.strokeStyle=c("--bad");cx.beginPath();cx.arc(O,O,Math.max(rr(.1),window.MPX_TRUE?2:7),0,7);cx.stroke();cx.setLineDash([]);
+ cx.fillStyle=c("--sun");cx.beginPath();cx.arc(O,O,5,0,7);cx.fill();
+ cx.strokeStyle=c("--good");cx.globalAlpha=.5;cx.beginPath();{const a=pos(RA,h),b=pos(RB,h);for(let s=0;s<=32;s++){const q=s/32,L=[a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q],an=Math.atan2(L[1],L[0]),r=rr(Math.hypot(L[0],L[1])),X=O+r*Math.cos(an),Y=O-r*Math.sin(an);s?cx.lineTo(X,Y):cx.moveTo(X,Y)}}cx.stroke();cx.globalAlpha=1;
+ const AUN=NODES.map((n,k)=>pos(k,h)),PRJ=p=>{const L=Math.atan2(p[1],p[0]),r=rr(Math.hypot(p[0],p[1]));return[O+r*Math.cos(L),O-r*Math.sin(L)]};
+ const along=(path,f)=>{const pts=path.map(i=>AUN[i]);let L=0;const seg=[];for(let i=1;i<pts.length;i++){const d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1],pts[i][2]-pts[i-1][2]);seg.push(d);L+=d}
+  let g=f*L;for(let i=0;i<seg.length;i++){if(g<=seg[i]||i===seg.length-1){const q=seg[i]?Math.min(1,g/seg[i]):1,a=pts[i],b=pts[i+1];return PRJ([a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q,a[2]+(b[2]-a[2])*q])}g-=seg[i]}return PRJ(pts[0])};
+ EV.forEach(e=>{if(simT<e.t)return;const age=simT-e.t;
+  if(age<600){const[x,y]=scr[e.o];cx.strokeStyle=P[e.o][1];cx.globalAlpha=1-age/600;cx.lineWidth=1.5;cx.beginPath();cx.arc(x,y,6+age/600*16,0,7);cx.stroke();cx.globalAlpha=1}
+  cx.fillStyle=P[e.o][1];P.forEach((q,k)=>{if(k===e.o||simT>=e.arr[k])return;const f=(simT-e.t)/(e.arr[k]-e.t);const[x,y]=along(pathAt(e.o,k,e.t),f);cx.beginPath();cx.arc(x,y,2,0,7);cx.fill()})});
+ cx.save();cx.font="500 11px 'IBM Plex Sans',sans-serif";cx.textAlign="left";cx.fillStyle="rgba(128,140,155,.95)";cx.fillText(window.MPX_TRUE?"True scale: light paths are straight":"Distances compressed to fit: straight light paths appear curved",8,W-8);cx.restore();orders.forEach(o=>{if(o.local)return;o.copies.forEach((ok,ci)=>{let pt=null,col;
+   if(simT>=o.tSend&&simT<o.tArr){const f=(simT-o.tSend)/(o.tArr-o.tSend);if(!ok&&f>.6)return;pt=along(o.out,f);col=ok?c("--sig"):c("--bad")}
+   else if(ci===0&&o.valid&&simT>=o.tClear&&simT<o.tConf){pt=along(o.back,(simT-o.tClear)/(o.tConf-o.tClear));col=c("--good")}
+   if(pt){cx.fillStyle=col;cx.save();cx.translate(pt[0]+(ci%3-1)*3,pt[1]+((ci/3|0)%3-1)*3);cx.rotate(Math.PI/4);cx.fillRect(-3.5,-3.5,7,7);cx.restore()}})});
+ NODES.forEach((n,k)=>{const[x,y]=scr[k];if(k>=RA){cx.fillStyle=c("--good");cx.save();cx.translate(x,y);cx.rotate(Math.PI/4);cx.fillRect(-4,-4,8,8);cx.restore();
+   cx.fillStyle=c("--soft");cx.font="500 11px 'IBM Plex Sans',sans-serif";cx.textAlign="left";cx.fillText(n,x+8,y+4);return}
+  if(k===home){cx.strokeStyle=c("--ink");cx.lineWidth=1.5;cx.beginPath();cx.arc(x,y,9,0,7);cx.stroke()}
+  cx.fillStyle=P[k][1];cx.beginPath();cx.arc(x,y,k===HUB?5.5:4.5,0,7);cx.fill();
+  cx.fillStyle=c("--ink");cx.font="500 12px 'IBM Plex Sans',sans-serif";const lab=n+(k===HUB?" (hub)":""),wl=cx.measureText(lab).width,rt=x>O&&x+12+wl<W;cx.textAlign=rt?"left":"right";cx.fillText(lab,rt?x+9:x-9,y-8)})}
+function drawChart(c){const cv=$("td-chart"),[cx,W,H]=sizeCanvas(cv);if(W<60)return;const l=40,r=8,t=8,b=22,X=s=>l+(W-l-r)*s/DAY,Y=v=>t+(H-t-b)*(1-(v-ymin)/(ymax-ymin));
+ cx.strokeStyle=c("--line");cx.fillStyle=c("--soft");cx.font="11px 'IBM Plex Sans',sans-serif";cx.lineWidth=1;
+ for(let h=0;h<=24;h+=6){cx.beginPath();cx.moveTo(X(h*3600),t);cx.lineTo(X(h*3600),H-b);cx.stroke();cx.textAlign="center";cx.fillText(h+"h",X(h*3600),H-6)}
+ const st=(ymax-ymin)/4;for(let i=0;i<=4;i++){const v=ymin+st*i;cx.textAlign="right";cx.fillText(v.toFixed(2),l-4,Y(v)+4)}
+ const n=Math.floor(simT/STEP);P.forEach((p,k)=>{if(k===home)return;line(k,1)});line(home,2.5);
+ function line(k,w){cx.strokeStyle=P[k][1];cx.lineWidth=w;cx.beginPath();for(let i=0;i<=n;i++){const x=X(i*STEP),y=Y(CH[k][i]);i?cx.lineTo(x,y):cx.moveTo(x,y)}cx.lineTo(X(simT),Y(priceRaw(k,simT)));cx.stroke()}
+ cx.strokeStyle=c("--ink");cx.lineWidth=1;cx.setLineDash([3,3]);cx.beginPath();cx.moveTo(X(simT),t);cx.lineTo(X(simT),H-b);cx.stroke();cx.setLineDash([])}
+function seen(x,t){const a=lat(x,home,t);if(a===Infinity)return{p:NaN,a};return{p:priceRaw(x,t-a),a}}
+function renderView(){const now=P.map((p,k)=>priceRaw(k,simT));
+ $("td-gap").textContent=((Math.max(...now)-Math.min(...now))/Math.min(...now)*100).toFixed(2)+"%";
+ $("td-view").innerHTML=P.map((p,k)=>{const s=seen(k,simT);const age=k===home?"live":s.a===Infinity?"no signal":fmtD(s.a)+" old";
+  return `<tr class="${k===home?"home":""}"><td>${p[0]}${k===HUB?" (hub)":""}</td><td class="n">${isNaN(s.p)?"none":s.p.toFixed(2)}<div class="small">${age}</div></td><td class="n">${now[k].toFixed(2)}</td></tr>`}).join("")}
+function renderLog(){if(!orders.length){$("td-log").innerHTML=`<tr><td class="small">No orders yet. A hub order leaves as several copies, must beat its batch deadline, clears at one fair price, and you only learn the fill when the report comes back.</td></tr>`;$("td-slip").textContent="0.00";return}
+ let tot=0;$("td-log").innerHTML=orders.slice().reverse().map(o=>{const head=`${o.side>0?"Buy":"Sell"} from ${P[o.home][0]} ${o.local?"on the local market":"to the Earth hub"} at ${fmtT(o.t0)}`;
+  if(o.local){const slip=o.side*(o.fill-o.seen);tot+=slip;return `<tr><td>${head}<div class="small">Filled instantly at the local price ${o.fill.toFixed(2)}; the operator nets it into the next batch.</div></td><td class="n">filled</td></tr>`}
+  const cp=`${o.copies.length} copies, ${o.copies.filter(x=>x).length} arrived`;
+  if(simT<o.tArr)return `<tr><td>${head}<div class="small">Saw ${o.seen.toFixed(2)}. ${cp.split(",")[0]} in flight for the ${fmtT(o.cut)} ${o.tier} batch; deadline ${fmtT(o.dl)}</div></td><td class="n small">sending</td></tr>`;
+  if(!o.valid)return `<tr><td>${head}<div class="small">${cp}: no copy beat the deadline. Rejected late; resubmit next batch.</div></td><td class="n small bad">rejected</td></tr>`;
+  if(simT<o.tClear)return `<tr><td>${head}<div class="small">${cp}. Accepted; batch clears at ${fmtT(o.tClear)}</div></td><td class="n small">accepted</td></tr>`;
+  const slip=o.side*(o.fill-o.seen);tot+=slip;
+  if(simT<o.tConf)return `<tr><td>${head}<div class="small">${cp}. Filled at ${o.fill.toFixed(2)} at ${fmtT(o.tClear)}; the report reaches you at ${fmtT(o.tConf)}</div></td><td class="n small">you don't know yet</td></tr>`;
+  return `<tr><td>${head}<div class="small">Saw ${o.seen.toFixed(2)}, filled ${o.fill.toFixed(2)}. Confirmed ${fmtD(o.tConf-o.t0)} after you clicked</div></td><td class="n ${slip>0?"bad":"good"}">${slip>0?"-":"+"}${Math.abs(slip).toFixed(2)}</td></tr>`}).join("");
+ $("td-slip").textContent=(-tot).toFixed(2)}
+function place(side){const t=simT,h=habs(t);
+ if(venue==="local"){const p=priceRaw(home,t);orders.push({side,home,local:true,t0:t,seen:p,fill:p});$("td-msg").textContent=`Filled on your local market at ${p.toFixed(2)}.`;renderLog();if(!playing)frame();return}
+ const fast=FAST.has(home),Bt=(fast?1.5:6)*3600,lag=(fast?.89:4.35)*3600,rt=route(home,HUB,h),floor=home===HUB?0:(light(home,HUB,h).ta-h)*3600,ex=home===HUB?0:rt.d*3600-floor+60;
+ if(home!==HUB&&rt.d===Infinity){$("td-msg").textContent="No route to Earth right now.";return}
+ const cut=Math.ceil((t+ex+1)/Bt)*Bt,tSend=Math.max(t,cut-ex),tArr=tSend+rt.d*3600,dl=cut+floor;
+ if(cut+lag>DAY){$("td-msg").textContent=`The next batch clears at ${fmtT(cut+lag)}, after the session closes. Rejected.`;return}
+ const k=home===HUB?1:Math.ceil(Math.log(0.005)/Math.log(1-rt.f)),copies=Array.from({length:k},()=>home===HUB||lossR()<rt.f),valid=copies.some(x=>x)&&tArr<=dl+1;
+ const tClear=cut+lag,back=route(HUB,home,habs(tClear)),s=seen(HUB,t);
+ orders.push({side,home,t0:t,tSend,tArr,cut,dl,tier:fast?"fast":"full",copies,valid,tClear,tConf:tClear+back.d*3600,seen:s.p,fill:priceRaw(HUB,cut),out:rt.path,back:back.path});
+ $("td-msg").textContent=home===HUB?`Order joins the ${fmtT(cut)} batch at the hub.`:`Sending ${k} copies to Earth for the ${fmtT(cut)} ${fast?"fast":"full"} batch; each arrives first try ${(rt.f*100).toFixed(1)}% of the time.`;
+ renderLog();if(!playing)frame()}
+let lastUI=0;
+function frame(){const c=css();drawOrb(c);drawChart(c);$("td-tclock").textContent=fmtT(simT);
+ $("td-uclock").textContent=`hour ${habs(simT).toFixed(2)} after the epoch (TDB)`;
+ const now=performance.now();if(!playing||now-lastUI>250){renderView();renderLog();lastUI=now}}
+function loop(ts){if(!playing)return;if(last!=null)simT=Math.min(DAY,simT+(ts-last)/1000*speed);last=ts;frame();
+ if(simT>=DAY){playing=false;$("td-play").textContent="Replay";return}requestAnimationFrame(loop)}
+$("td-play").onclick=()=>{if(simT>=DAY){simT=0;orders=[]}playing=!playing;$("td-play").textContent=playing?"Pause":"Play";last=null;if(playing)requestAnimationFrame(loop)};
+document.querySelectorAll("#td-seg button").forEach(b=>b.onclick=()=>{speed=+b.dataset.s;document.querySelectorAll("#td-seg button").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+P.forEach((p,i)=>{const o=document.createElement("option");o.value=i;o.textContent=p[0];$("td-home").appendChild(o);
+ $("td-legend").insertAdjacentHTML("beforeend",`<span><i style="background:${p[1]}"></i>${p[0]}</span>`)});
+$("td-home").value=home;$("td-home").onchange=e=>{home=+e.target.value;frame()};$("td-venue").onchange=e=>{venue=e.target.value};
+$("td-buy").onclick=()=>place(1);$("td-sell").onclick=()=>place(-1);
+function restart(){playing=false;$("td-play").textContent="Play";$("td-msg").textContent="Computing routes for the day";setTimeout(()=>{setup();frame()},20)}
+$("td-day").oninput=e=>{$("td-dayl").textContent=e.target.value};$("td-day").onchange=restart;$("td-reroll").onclick=()=>{seed=Math.floor(Math.random()*1e9);restart()};
+addEventListener("resize",()=>frame());restart();
+})();
+</script>
+<script>
+(()=>{
+const EL=[["Mercury", 0.3870972529131369, 0.2056391287772749, 7.003376739406431, 48.297318639624, 29.20135514716107, 158.0266899039272, 4.092361365466381], ["Venus", 0.7233373086832101, 0.006766699201958504, 3.394338290322743, 76.60588195307673, 54.91973283689823, 208.0494051543445, 1.602113597941237], ["Earth", 0.9995049145908903, 0.0170555221835682, 0.005393396667292408, 176.6206272557732, 287.7740198972571, 256.1404947503081, 0.9863415430204476], ["Mars", 1.523653063744921, 0.09341941434148233, 1.847457546777179, 49.4809684852205, 286.6331106769099, 94.16517233830973, 0.5240527569294179], ["Ceres", 2.76595234413872, 0.07975569623146875, 10.58746044459709, 80.24898646132206, 73.20145111086198, 297.0156759369557, 0.2142579938193311], ["Jupiter", 5.203098453421111, 0.04811720556041555, 1.303413902448638, 100.5134326632505, 273.6311561624746, 111.2497988019995, 0.08308415302323827], ["Saturn", 9.540477417533626, 0.05517598618913071, 2.48865020495108, 113.7050072792812, 338.628023118351, 284.392757877648, 0.03345114340526617], ["Uranus", 19.26360048570033, 0.04751104687977423, 0.7703427738092589, 74.05272032650134, 92.45259678574354, 261.3717598156659, 0.01165755195958871], ["Neptune", 30.06405108492006, 0.009773760473970381, 1.775337461214952, 131.9885078888837, 281.8372243167906, 309.6507012967161, 0.005979212745910185], ["Relay A", 2.8284271247461903, 0, 0, 0, 0, 45, 0.2071984888583124], ["Relay B", 2.8284271247461903, 0, 0, 0, 0, 135, 0.2071984888583124]];
+const D2R=Math.PI/180,SEC=1/3600,LT=8.317/60,EXCL=0.10,$=id=>document.getElementById(id);
+const B={};EL.forEach(r=>{const[n,a,e,i,O,w,M0,nd]=r,ci=Math.cos(i*D2R),si=Math.sin(i*D2R),cO=Math.cos(O*D2R),sO=Math.sin(O*D2R),cw=Math.cos(w*D2R),sw=Math.sin(w*D2R);
+ B[n]={a,e,M0,nd,P:[cO*cw-sO*sw*ci,-cO*sw-sO*cw*ci],Q:[sO*cw+cO*sw*ci,-sO*sw+cO*cw*ci],R:[sw*si,cw*si]}});
+const SET=["Mercury","Venus","Earth","Mars","Ceres","Jupiter","Saturn","Uranus","Neptune"],REL=["Relay A","Relay B"],FAST=new Set(["Mercury","Venus","Earth","Mars","Ceres","Jupiter"]);
+function pos(n,h){const b=B[n],M=((b.M0+b.nd*h/24)%360)*D2R;let E=M;for(let k=0;k<30;k++){const d=(E-b.e*Math.sin(E)-M)/(1-b.e*Math.cos(E));E-=d;if(Math.abs(d)<1e-15)break}
+ const x=b.a*(Math.cos(E)-b.e),y=b.a*Math.sqrt(1-b.e*b.e)*Math.sin(E);return[b.P[0]*x+b.P[1]*y,b.Q[0]*x+b.Q[1]*y,b.R[0]*x+b.R[1]*y]}
+const dist=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2]);
+function light(a,b,te){const pa=pos(a,te);let ta=te+LT*dist(pa,pos(b,te));for(let k=0;k<12;k++){const n=te+LT*dist(pa,pos(b,ta));if(Math.abs(n-ta)<1e-10){ta=n;break}ta=n}return{ta,d:dist(pa,pos(b,ta)),pa,pb:pos(b,ta)}}
+function clr(p,q){const d=[q[0]-p[0],q[1]-p[1],q[2]-p[2]],dd=d[0]*d[0]+d[1]*d[1]+d[2]*d[2];let s=-(p[0]*d[0]+p[1]*d[1]+p[2]*d[2])/dd;s=Math.max(0,Math.min(1,s));return Math.hypot(p[0]+s*d[0],p[1]+s*d[1],p[2]+s*d[2])}
+const MT=[["Relay B","Neptune",2,26],["Relay B","Ceres",240,264]];
+function hop(a,b,ready){let te=ready+SEC;for(let g=0;g<4;g++){const L=light(a,b,te);if(clr(L.pa,L.pb)<EXCL)return null;
+ const m=MT.find(w=>((w[0]===a&&w[1]===b)||(w[0]===b&&w[1]===a))&&te<w[3]&&L.ta>=w[2]);if(!m)return{fr:a,to:b,te,ta:L.ta,p:1-Math.exp(-0.02*L.d)};te=m[3]+SEC}return null}
+function route(a,b,t){let best=null;for(const r of [[a,"Relay A",b],[a,"Relay B",b],[a,"Relay A","Relay B",b],[a,"Relay B","Relay A",b]]){let ready=t,hs=[],ok=true;
+ for(let k=0;k<r.length-1;k++){const h=hop(r[k],r[k+1],ready);if(!h){ok=false;break}hs.push(h);ready=h.ta+(REL.includes(r[k+1])?SEC:0)}if(ok&&(!best||ready<best.arr))best={path:r,hops:hs,arr:ready}}return best}
+const ftOf=rt=>rt.hops.reduce((x,h)=>x*(1-h.p),1),kOf=rt=>Math.ceil(Math.log(0.005)/Math.log(1-ftOf(rt)));
+const PAL=[[79,140,255],[242,160,40],[170,110,240],[40,190,140],[240,90,150],[60,190,220],[200,170,60]];
+const PRICE=100.12,CASH0=5000;
+let trades=[],nextId=1,now=0,TMIN=0,END=1,playing=true,last=null,lossOn=false;
+let T=null,mi=0;// T = trade being built
+function send(kind,a,b,t,copies){if(a===b)return{arr:t+SEC,local:true,path:[a],copies:1,launches:0,lost:0,f:1};
+ const rt=route(a,b,t);if(!rt)return{arr:null,path:[a,"?",b],copies,launches:0,lost:0,f:0};const out={arr:null,path:rt.path,copies,launches:0,lost:0,f:ftOf(rt),id:mi++};
+ for(let c=0;c<copies;c++){let ready=t+c*SEC,ok=true;
+  for(const h0 of rt.hops){let te=Math.max(ready+SEC,h0.te+c*SEC),got=false;
+   for(let n=0;n<4;n++){const L2=light(h0.fr,h0.to,te),lost=lossOn&&Math.random()<h0.p;out.launches+=2;T.pk.push({id:out.id,k:copies,c,fr:h0.fr,to:h0.to,te,ta:L2.ta,pa:L2.pa,pb:L2.pb,lost});if(lost){out.lost++;te+=2*(L2.ta-te)+1}else{got=true;ready=L2.ta+(REL.includes(h0.to)?SEC:0);break}}
+   if(!got){ok=false;break}}if(ok)out.arr=out.arr===null?ready:Math.min(out.arr,ready)}return out}
+function deliver(kind,a,b,t,copies){let m=send(kind,a,b,t,copies),att=1,t2=t;while(m.arr===null&&att<4){const r=route(a,b,t);t2=t+att*(2*(r?r.arr-t:5)+24);step(t2,act(a),"previous attempt abandoned: a hop lost all 4 launches",`retry ${kind} with the same ID`,null,`${act(a)} retries with the same ID. Nothing is refunded on a timeout.`);m=send(kind,a,b,t2,copies);att++}
+ if(m.arr===null)m.arr=t2+30;return m}
+const act=x=>x==="Earth"?"Earth hub":(x==="Uranus"||x==="Neptune")?`${x} operator`:`${x} ledger`;
+const pktTxt=m=>!m?"none":m.local?"local, 1 s":`${m.path.map(p=>p.replace("Relay ","R")).join(" → ")}; ${m.copies} cop${m.copies>1?"ies":"y"}; ${m.launches} launches${m.lost?`, ${m.lost} lost`:""}`;
+let L={};
+function step(t,actor,knows,does,m,say,fx){T.steps.push({t,actor,knows,does,pkt:pktTxt(m),arr:m&&m.arr!==null?m.arr.toFixed(3):"",state:JSON.parse(JSON.stringify(L)),say:say||`${actor}: ${does}.`,fx:fx||[]})}
+function transfer(X,Y,A){L={[X+" cash"]:A,"in flight":0,[Y+" received"]:0};L[X+" cash"]=0;L["in flight"]=A;
+ let m=send("TRANSFER",X,Y,T.t0,1);step(T.t0,act(X),`you asked to send ${A} to ${Y}; nothing current is known about ${Y}`,"debits, holds and sends TRANSFER",m,`${X} debits ${A} from your account and sends it toward ${Y}. ${Y} doesn't know yet.`,[[X,-A]]);
+ let att=1;while(m.arr===null&&att<4){const tr=T.t0+att*30;m=send("TRANSFER",X,Y,tr,1);step(tr,act(X),"status unknown: a hop lost all its launches","keeps the hold; retries with the same ID",m,`${X} doesn't know if it arrived, so it keeps the hold and retries.`);att++}
+ L["in flight"]=0;L[Y+" received"]=A;const m2=deliver("CREDITED",Y,X,m.arr,1);
+ step(m.arr,act(Y),"first copy of this transfer; ID never seen","credits your account and signs CREDITED",m2,`${Y} credits ${A} to your account. ${X} still only knows it's pending.`,[[Y,A]]);
+ step(m2.arr,act(X),`${Y}'s signed CREDITED`,"finalizes; releases the hold",null,`${X} sees the signed receipt. Final, and the money was never in two places.`);
+ T.flight=[[T.t0,m.arr,A,X]]}
+function order(X,Q,fut){const im=+(Q*PRICE*0.03).toFixed(2);L={[X+" cash spent"]:im,"margin at hub":im,"position":0};
+ const fast=FAST.has(X),Bt=fast?1.5:6,lag=fast?0.89:4.35,r0=X==="Earth"?null:route(X,"Earth",T.t0),floor=X==="Earth"?0:light(X,"Earth",T.t0).ta-T.t0,ex=r0?(r0.arr-T.t0-floor)+1/60:0;
+ const Tb=Math.ceil((T.t0+ex+1e-9)/Bt)*Bt,ts=Math.max(T.t0,Tb-ex),dl=Tb+floor,k=r0?kOf(r0):1;
+ step(T.t0,act(X),"your cash; the hub price as of one light-time ago",`posts margin ${im}; queues the order for the ${Tb.toFixed(1)} h ${fast?"fast":"full"} batch`,null,`${X} posts ${im} of margin at the hub and queues your order for the ${Tb.toFixed(1)} h batch.`,[[X,-im],["Margin",im]]);
+ const m=send("ORDER",X,"Earth",ts,k);step(ts,act(X),`must beat deadline ${dl.toFixed(3)} h (cutoff + straight-line light-time)`,`launches the order as ${k} copies`,m,`Your order leaves as ${k} copies so at least one beats the deadline.`);
+ if(m.arr===null||m.arr>dl){step(Math.min(dl,m.arr||dl),"Earth hub","no copy arrived before the deadline","rejects the order late; returns the margin",null,"Every copy missed the deadline. The order is rejected and your margin is returned.",[[X,im],["Margin",-im]]);return}
+ step(m.arr,"Earth hub","first copy of your order, before the deadline","accepts it; ignores later copies",null,"Earth accepts the first copy. Duplicates are ignored, so it can only fill once.");
+ const tc=Tb+lag;L.position=Q;step(tc,"Earth hub","every admitted deadline has passed",`clears the batch at ${PRICE}`,null,`The batch clears at ${PRICE}. Your order is filled; you don't know yet.`);
+ const r=deliver("FILL","Earth",X,tc,1);step(tc+SEC,"Earth hub","your order filled","sends the fill report",r,"Earth sends your fill report.");
+ if(!fut){step(r.arr,act(X),`fill at ${PRICE}`,"confirms; books your shares",null,`You learn your fill: ${Q} shares at ${PRICE}.`,[[X,-Q*PRICE],["Shares",Q]]);return}
+ step(r.arr,act(X),`fill at ${PRICE}`,"confirms; books your futures",null,`You learn your fill: ${Q} futures at ${PRICE}.`,[["Futures",Q]]);
+ const te=tc+48,PE=101.6,pay=+(Q*(PE-PRICE)).toFixed(2);const s1=deliver("STATEMENT","Earth",X,tc+24,1);step(tc+24,"Earth hub","positions and margin","sends the daily statement",s1,"Daily statement.");
+ const p2=deliver("PAYOUT","Earth",X,te,1);step(te,"Earth hub",`expiry price ${PE}`,`settles (+${pay}), releases margin, pays out`,p2,`Expiry at ${PE}: you made ${pay}. Margin is released.`,[["Futures",-Q],["Margin",-im]]);
+ step(p2.arr,act(X),"payout received","credits your account",null,"The payout lands in your account. Position closed.",[[X,im+pay]]);T.flight=[[te,p2.arr,im+pay,"Earth"]]}
+function swap(X,Y,A){L={[X+" locked"]:A,[Y+" asset locked"]:1,"you receive asset":0,[Y+" receives"]:0};
+ const a=deliver("LOCK",X,Y,T.t0,1);step(T.t0,act(X),"holds the secret behind hash H",`locks ${A} of your cash under H`,a,`${X} locks ${A} of your cash under a hash only you can open.`,[[X,-A]]);
+ const b=deliver("LOCK",Y,X,a.arr,1);step(a.arr,act(Y),"your credits are locked under H","locks the asset under H",b,`${Y} locks the asset under the same hash.`);
+ const c=deliver("CLAIM",X,Y,b.arr,1);step(b.arr,act(X),"the asset is locked under H","claims it by revealing the secret",c,"You claim the asset, which reveals the secret.");
+ L["you receive asset"]=1;const d=deliver("CLAIM",Y,X,c.arr,1);step(c.arr,act(Y),"secret revealed","releases the asset to you; claims the credits",d,`${Y} releases the asset to you and claims the credits with the secret.`,[["Swap assets",1]]);
+ L[Y+" receives"]=A;step(d.arr,act(X),"valid secret presented","releases your credits to the seller: swap complete",null,"Swap complete: the asset is yours and the seller is paid. Neither side could take both.",[[Y,A]]);T.flight=[[T.t0,d.arr,A,X]]}
+function call(X,A){L={"margin at hub":0,"top-up in flight":0};const rt=route("Earth",X,T.t0),k=rt?kOf(rt):1;
+ let c=send("CALL","Earth",X,T.t0,k);step(T.t0,"Earth hub","prices fell; your collateral is below 80% of initial margin",`calls for ${A} as ${k} copies`,c,`Prices fell. Earth calls you for ${A} more margin, sent as ${k} copies.`);
+ if(c.arr===null){const t2=T.t0+2*(rt.arr-T.t0)+1;step(t2,"Earth hub","call unanswered: every copy lost","resends once before any default",null,"Every copy was lost. Earth resends once; no default.");c=deliver("CALL","Earth",X,t2,k)}
+ L["top-up in flight"]=A;const r1=route(X,"Earth",c.arr),u=deliver("TOP-UP",X,"Earth",c.arr,r1?kOf(r1):1);step(c.arr,act(X),"call received","pays the top-up as copies",u,`${X} receives the call and sends ${A} from your account.`,[[X,-A]]);
+ L["top-up in flight"]=0;L["margin at hub"]=A;const r=deliver("CREDITED","Earth",X,u.arr,1);step(u.arr,"Earth hub","top-up arrived","restores your margin; confirms",r,"Your margin is restored at the hub.",[["Margin",A]]);
+ step(r.arr,act(X),"confirmation received","obligation settled",null,"Confirmed. Done.");T.flight=[[c.arr,u.arr,A,X]]}
+// ---- portfolio
+function holdings(t){const h={cash:{},Margin:0,Shares:0,Futures:0,"Swap assets":0,flight:{}};SET.forEach(s=>{h.cash[s]=CASH0;h.flight[s]=0});
+ for(const tr of trades){for(const s of tr.steps)if(s.t<=t)for(const[k,v]of s.fx){if(k in h.cash)h.cash[k]+=v;else h[k]+=v}
+  for(const[a,b,amt,who]of(tr.flight||[]))if(t>=a&&t<b)h.flight[who]=(h.flight[who]||0)+amt}
+ return h}
+function available(X){const h=holdings(Infinity);return h.cash[X]}
+window.MPX_PORT={holdings:()=>holdings(now),trades:()=>trades,now:()=>now};
+// ---- make a trade
+const LABEL={transfer:"Transfer",spot:"Buy shares",futures:"Futures",swap:"Swap",call:"Margin call"};
+function make(){const P=$("tr-prod").value,X=$("tr-from").value,Y=$("tr-to").value,A=Math.max(1,Math.round(+$("tr-amt").value||1));lossOn=$("tr-loss").value==="1";
+ if((P==="transfer"||P==="swap")&&X===Y){msg("Pick two different settlements.");return}
+ const need=P==="spot"?A*PRICE*1.03:P==="futures"?A*PRICE*0.03:A;if(need>available(X)+1e-9){msg(`Not enough cash on ${X}: you need ${need.toLocaleString(undefined,{maximumFractionDigits:0})}, and ${Math.max(0,available(X)).toLocaleString(undefined,{maximumFractionDigits:0})} will be left after your other trades settle.`);return}
+ const t0=+$("tr-start").value||0,id=nextId++;T={id,t0,steps:[],pk:[],col:PAL[(id-1)%PAL.length],label:`${LABEL[P]} ${P==="spot"||P==="futures"?A+" from "+X:(P==="call"?"to "+X:X+" → "+Y)}${P==="transfer"||P==="swap"||P==="call"?" ("+A+")":""}${lossOn?", real loss":""}`,flight:[]};
+ ({transfer:()=>transfer(X,Y,A),spot:()=>order(X,A,false),futures:()=>order(X,A,true),swap:()=>swap(X,Y,A),call:()=>call(X,A)})[P]();
+ T.steps.sort((a,b)=>a.t-b.t);T.end=Math.max(...T.steps.map(s=>s.t));trades.push(T);T=null;now=t0;playing=true;$("tr-play").textContent="Pause";msg("");rebuild()}
+function msg(s){$("tr-msg").textContent=s}
+function remove(id){trades=trades.filter(t=>t.id!==id);rebuild()}
+function bounds(){if(!trades.length){TMIN=0;END=1;return}TMIN=Math.min(...trades.map(t=>t.t0));const e=Math.max(...trades.map(t=>t.end));END=e+(e-TMIN)*0.04+0.2;now=Math.min(Math.max(now,TMIN),END)}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function rebuild(){bounds();
+ $("tr-legend").innerHTML=trades.map(t=>`<span><i style="background:rgb(${t.col})"></i>${esc(t.label)}<button aria-label="Remove ${esc(t.label)}" data-rm="${t.id}">×</button></span>`).join("");
+ $("tr-ticks").innerHTML=trades.map(t=>t.steps.map((s,i)=>`<i data-tk="${t.id}-${i}" style="left:${((s.t-TMIN)/(END-TMIN)*100).toFixed(2)}%;background:rgb(${t.col})"></i>`).join("")).join("");
+ $("tr-trades").innerHTML=trades.slice().reverse().map(t=>`<div class="card trade" id="tc-${t.id}"><div class="th"><i style="background:rgb(${t.col})"></i><b>${esc(t.label)}</b><span class="pill" id="tc-${t.id}-st"></span><span class="small">sent at hour ${t.t0}, done at hour ${t.end.toFixed(2)}</span><button class="x" data-rm="${t.id}">Remove ×</button></div>
+  <div class="say" id="tc-${t.id}-say"></div><div class="small" id="tc-${t.id}-know"></div><div class="led" id="tc-${t.id}-led"></div>
+  <details><summary>All ${t.steps.length} steps (click one to jump there)</summary><div class="tw"><table><thead><tr><th>Time (h)</th><th>Actor</th><th>Knows</th><th>Does</th><th>Packet</th><th>Arrives</th></tr></thead><tbody>${t.steps.map((s,i)=>`<tr id="tc-${t.id}-r${i}" data-jump="${s.t}"><td>${s.t.toFixed(3)}</td><td>${esc(s.actor)}</td><td>${esc(s.knows)}</td><td>${esc(s.does)}</td><td>${esc(s.pkt)}</td><td>${s.arr}</td></tr>`).join("")}</tbody></table></div></details></div>`).join("")||`<div class="card small" style="margin-top:12px">No trades on the map. Make one above.</div>`;
+ document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>remove(+b.dataset.rm));
+ document.querySelectorAll("[data-jump]").forEach(r=>r.onclick=()=>{playing=false;$("tr-play").textContent="Play";now=+r.dataset.jump});
+ lastUI=0;renderPortfolio(true)}
+let lastUI=0;
+function updateUI(){for(const t of trades){let cur=-1;t.steps.forEach((s,i)=>{const r=$(`tc-${t.id}-r${i}`);if(r)r.className=s.t<=now?"":"f";if(s.t<=now)cur=i});
+  if(cur>=0){const r=$(`tc-${t.id}-r${cur}`);if(r)r.className="now"}
+  const s=cur>=0?t.steps[cur]:null,st=$(`tc-${t.id}-st`);if(!st)continue;
+  st.textContent=now<t.t0?"not sent yet":now>=t.end?"settled":`step ${cur+1} of ${t.steps.length}`;
+  $(`tc-${t.id}-say`).textContent=s?s.say:"Waiting to send.";$(`tc-${t.id}-know`).textContent=s?`${s.actor} knows: ${s.knows}`:"";
+  $(`tc-${t.id}-led`).innerHTML=s?Object.entries(s.state).map(([k,v])=>`<div><span>${esc(k)}</span><b>${(+v).toLocaleString(undefined,{maximumFractionDigits:2})}</b></div>`).join(""):""}
+ document.querySelectorAll("#tr-ticks i").forEach(i=>{const[id,k]=i.dataset.tk.split("-").map(Number),t=trades.find(x=>x.id===id);if(t)i.style.opacity=t.steps[k].t<=now?1:.35});
+ $("tr-clock").textContent=`Hour ${now.toFixed(3)} TDB`;$("tr-scrub").value=Math.round((now-TMIN)/(END-TMIN)*1000);renderPortfolio()}
+function fmt(v){return Math.round(v).toLocaleString()}
+function renderPortfolio(force){const home=$("v-home");if(!home||(!force&&!home.classList.contains("on")))return;const h=holdings(now),cash=SET.reduce((a,s)=>a+h.cash[s],0),fl=SET.reduce((a,s)=>a+h.flight[s],0),val=cash+fl+h.Margin+h.Shares*PRICE;
+ $("pf-total").textContent=fmt(val);const d=val-CASH0*9;$("pf-chg").innerHTML=`<span class="${d>=0?"good":"bad"}">${d>=0?"+":""}${fmt(d)}</span> since you started`;
+ $("pf-asof").textContent=trades.length?`As of hour ${now.toFixed(2)} on the Make a trade clock. Money in flight counts at full value until it lands.`:"Credits on every settlement. Trades you make move them in real time.";
+ $("pf-cards").innerHTML=[["Cash",fmt(cash)],["In flight",fmt(fl)],["Margin at the hub",fmt(h.Margin)],["HLX shares",`${h.Shares} (${fmt(h.Shares*PRICE)})`],["Futures",h.Futures],["Swap assets",h["Swap assets"]]].map(x=>`<div class="card"><b>${x[1]}</b><span>${x[0]}</span></div>`).join("");
+ $("pf-cash").innerHTML=SET.map(s=>`<tr><td>${s}</td><td class="n">${fmt(h.cash[s])}</td><td class="n">${h.flight[s]?fmt(h.flight[s]):"–"}</td></tr>`).join("");
+ $("pf-trades").innerHTML=trades.length?trades.map(t=>`<div class="ptrade"><i style="background:rgb(${t.col})"></i>${esc(t.label)}<span class="pill">${now<t.t0?"not sent":now>=t.end?"settled":"in progress"}</span></div>`).join(""):`No trades yet. <button data-goto="trace" style="width:auto;padding:4px 10px">Make a trade</button>`;
+ document.querySelectorAll("#pf-trades [data-goto]").forEach(b=>b.onclick=()=>document.querySelector('nav button[data-v="trace"]').click())}
+// ---- map with zoom and pan
+const cv=$("tr-sky"),cx=cv.getContext("2d");let W=800,H=500,Z=1,PX=0,PY=0;
+function size(){const dpr=Math.min(2,devicePixelRatio||1);W=cv.clientWidth||800;H=cv.clientHeight||500;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+const SC=r=>window.MPX_TRUE?r/30.6:Math.log(1+2.2*r)/Math.log(1+2.2*30.6),base=()=>Math.min(W,H)*0.47;
+function scr(p){const r=Math.hypot(p[0],p[1]),q=base()*SC(r)*Z,a=Math.atan2(p[1],p[0]);return[W/2+PX+q*Math.cos(a),H/2+PY-q*Math.sin(a)]}
+function zoomAt(f,mx,my){const nz=Math.max(1,Math.min(400,Z*f)),k=nz/Z;PX=(mx-W/2)-k*((mx-W/2)-PX);PY=(my-H/2)-k*((my-H/2)-PY);Z=nz;if(Z===1){PX=0;PY=0}}
+cv.addEventListener("wheel",e=>{e.preventDefault();const r=cv.getBoundingClientRect();zoomAt(Math.exp(-e.deltaY*0.0015),e.clientX-r.left,e.clientY-r.top)},{passive:false});
+let drag=null;cv.addEventListener("pointerdown",e=>{drag=[e.clientX,e.clientY,PX,PY];cv.setPointerCapture(e.pointerId);cv.style.cursor="grabbing"});
+cv.addEventListener("pointermove",e=>{if(drag){PX=drag[2]+e.clientX-drag[0];PY=drag[3]+e.clientY-drag[1]}});
+cv.addEventListener("pointerup",()=>{drag=null;cv.style.cursor="grab"});cv.addEventListener("dblclick",()=>{Z=1;PX=0;PY=0});
+document.querySelectorAll("[data-z]").forEach(b=>b.onclick=()=>{if(b.dataset.z==="reset"){Z=1;PX=0;PY=0}else zoomAt(b.dataset.z==="in"?1.6:1/1.6,W/2,H/2)});
+const STARS=Array.from({length:220},()=>[Math.random(),Math.random(),Math.random()*1.2+0.2]);let ORB={};
+function orbits(){for(const n of SET.concat(REL)){const b=B[n],per=360/b.nd*24,pts=[];for(let i=0;i<=240;i++)pts.push(pos(n,per*i/240));ORB[n]=pts}}
+function line3(a,b,col,w){cx.strokeStyle=col;cx.lineWidth=w;cx.beginPath();for(let s=0;s<=40;s++){const q=s/40,pt=scr([a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q,a[2]+(b[2]-a[2])*q]);s?cx.lineTo(pt[0],pt[1]):cx.moveTo(pt[0],pt[1])}cx.stroke()}
+function draw(){cx.fillStyle="#05070A";cx.fillRect(0,0,W,H);for(const s of STARS){cx.fillStyle=`rgba(255,255,255,${0.15+s[2]*0.25})`;cx.fillRect(s[0]*W,s[1]*H,s[2],s[2])}
+ for(const n of SET.concat(REL)){cx.strokeStyle=REL.includes(n)?"rgba(69,209,168,.3)":"rgba(255,255,255,.09)";cx.setLineDash(REL.includes(n)?[4,5]:[]);cx.lineWidth=1;cx.beginPath();ORB[n].forEach((p,i)=>{const q=scr(p);i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1])});cx.stroke()}cx.setLineDash([]);
+ const o=scr([0,0,0]),sunR=Math.max(5,base()*SC(0.03)*Z),g=cx.createRadialGradient(o[0],o[1],0,o[0],o[1],sunR*4);g.addColorStop(0,"rgba(255,190,90,1)");g.addColorStop(1,"rgba(255,150,50,0)");cx.fillStyle=g;cx.beginPath();cx.arc(o[0],o[1],sunR*4,0,7);cx.fill();
+ const ex=base()*SC(EXCL)*Z;cx.strokeStyle="rgba(255,98,89,.75)";cx.setLineDash([3,3]);cx.beginPath();cx.arc(o[0],o[1],Math.max(ex,window.MPX_TRUE?2:9),0,7);cx.stroke();cx.setLineDash([]);
+ const P={};for(const n of SET.concat(REL))P[n]=pos(n,now);line3(P["Relay A"],P["Relay B"],"rgba(69,209,168,.55)",1.2);
+ for(const t of trades){const col=t.col;const live=new Set();for(const p of t.pk)if(now>=p.te&&now<=p.ta)live.add(p.fr+"|"+p.to);
+  for(const k of live){const[a,b]=k.split("|");line3(P[a],P[b],`rgba(${col},.35)`,1)}
+  const labeled=new Set();
+  for(const p of t.pk){if(now<p.te||now>p.ta+(p.lost?0.5:0))continue;const f=Math.min(1,(now-p.te)/(p.ta-p.te)),AU=q=>[p.pa[0]+(p.pb[0]-p.pa[0])*q,p.pa[1]+(p.pb[1]-p.pa[1])*q,p.pa[2]+(p.pb[2]-p.pa[2])*q],A=scr(AU(f)),A2=scr(AU(Math.min(1,f+0.01))),A0=scr(AU(Math.max(0,f-0.01))),dx=A2[0]-A0[0],dy=A2[1]-A0[1],ln=Math.hypot(dx,dy)||1,off=(p.c-(p.k-1)/2)*7,x=A[0]-dy/ln*off,y=A[1]+dx/ln*off;
+   if(p.lost&&f>0.55){cx.fillStyle="rgba(255,98,89,"+(1-Math.min(1,(now-p.te-(p.ta-p.te)*0.55)/1.5)).toFixed(2)+")";cx.font="700 14px sans-serif";cx.textAlign="center";cx.fillText("×",x,y+5);continue}
+   const gl=cx.createRadialGradient(x,y,0,x,y,9);gl.addColorStop(0,p.lost?"rgba(255,98,89,.9)":`rgba(${col},.95)`);gl.addColorStop(1,`rgba(${col},0)`);cx.fillStyle=gl;cx.beginPath();cx.arc(x,y,9,0,7);cx.fill();cx.fillStyle="#fff";cx.beginPath();cx.arc(x,y,2.2,0,7);cx.fill();
+   const key=p.id+"|"+p.fr;if(p.k>1&&!labeled.has(key)){labeled.add(key);const s2=(p.k-1)/2*7+12;cx.fillStyle=`rgb(${col})`;cx.font="600 11px sans-serif";cx.textAlign="center";cx.fillText("×"+p.k,A[0]-dy/ln*s2,A[1]+dx/ln*s2+4)}}}
+ for(const n of SET.concat(REL)){const[x,y]=scr(P[n]),rel=REL.includes(n),hub=n==="Earth";
+  if(rel){cx.fillStyle="#45D1A8";cx.save();cx.translate(x,y);cx.rotate(Math.PI/4);cx.fillRect(-4.5,-4.5,9,9);cx.restore()}else{cx.fillStyle=hub?"#3CE08A":"#DDE5EA";cx.beginPath();cx.arc(x,y,hub?6:4.5,0,7);cx.fill()}
+  const lab=n+(hub?" · hub":"");cx.font=`${rel||hub?600:500} 12px sans-serif`;const rt=x+12+cx.measureText(lab).width<W;cx.fillStyle=rel?"#7FE3C6":"rgba(238,242,245,.85)";cx.textAlign=rt?"left":"right";cx.fillText(lab,rt?x+9:x-9,y-8)}
+ cx.font="500 11px sans-serif";cx.textAlign="left";cx.fillStyle="rgba(170,180,195,.9)";cx.fillText((window.MPX_TRUE?"True scale: light paths are straight":"Distances compressed to fit: straight light paths appear curved")+(Z>1?`  ·  zoom ×${Z.toFixed(1)}`:""),12,H-12)}
+function loop(ts){requestAnimationFrame(loop);if(!$("v-trace").classList.contains("on")){last=null;if(ts-lastUI>500){renderPortfolio();lastUI=ts}return}
+ if(cv.clientWidth!==W)size();if(playing&&last!==null&&trades.length){now=Math.min(END,now+(ts-last)/1000*(+$("tr-spd").value));if(now>=END){playing=false;$("tr-play").textContent="Replay"}}last=ts;draw();if(ts-lastUI>150){updateUI();lastUI=ts}}
+SET.forEach(k=>["tr-from","tr-to"].forEach(id=>{const o=document.createElement("option");o.value=k;o.textContent=k;$(id).appendChild(o)}));$("tr-from").value="Neptune";$("tr-to").value="Mars";
+$("tr-run").onclick=make;$("tr-clear").onclick=()=>{trades=[];rebuild()};
+$("tr-play").onclick=()=>{if(now>=END)now=TMIN;playing=!playing;$("tr-play").textContent=playing?"Pause":"Play";last=null};
+$("tr-next").onclick=()=>{playing=false;$("tr-play").textContent="Play";const n=trades.flatMap(t=>t.steps.map(s=>s.t)).filter(t=>t>now+1e-9).sort((a,b)=>a-b)[0];now=n!==undefined?n:END};
+$("tr-scrub").oninput=e=>{playing=false;$("tr-play").textContent="Play";now=TMIN+e.target.value/1000*(END-TMIN)};
+$("tr-start").oninput=e=>{$("tr-startl").textContent=e.target.value};
+$("tr-prod").onchange=()=>{const p=$("tr-prod").value;$("tr-toBox").style.visibility=["transfer","swap"].includes(p)?"visible":"hidden";$("tr-amtl").textContent=p==="spot"||p==="futures"?"Shares":"Amount (credits)"};
+document.querySelectorAll("[data-preset]").forEach(b=>b.onclick=()=>{const[p,f,to,l,a]=b.dataset.preset.split(",");$("tr-prod").value=p;$("tr-from").value=f;$("tr-to").value=to;$("tr-loss").value=l;$("tr-amt").value=a;$("tr-prod").onchange();make()});
+addEventListener("resize",()=>{size()});size();orbits();$("tr-prod").onchange();rebuild();requestAnimationFrame(loop);
+})();
+
+</script>
+</body>
+</html>

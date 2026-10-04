@@ -1,0 +1,32 @@
+{\setlength{\tabcolsep}{3pt}\begin{longtable}{@{}p{0.07\linewidth}p{0.09\linewidth}p{0.15\linewidth}p{0.14\linewidth}p{0.16\linewidth}p{0.1\linewidth}p{0.17\linewidth}@{}}
+\caption{S3 value move from Ceres to the Earth hub, conditional trace from reset.}\\
+\toprule
+Time (h) & Actor & Knows & Action & Packet & Arrival & State after \\
+\midrule
+\endhead
+0.0000 & Ceres ledger & request from client; destination state unknown & debit 100 into hold; send TRANSFER & backbone Ceres $\to$ RA $\to$ Earth, $\times$1, launch 0.0003 & 0.5562 (p 0.923) & Ceres cash 900.00; Ceres hold 100.00; Earth cash 1100.00 \\
+0.5562 & Earth hub & first copy of T1; ID not tombstoned & credit 100; send CREDITED & backbone Earth $\to$ RA $\to$ Ceres, $\times$1, launch 0.5564 & 1.1124 (p 0.923) & Ceres cash 900.00; Earth cash 1100.00 \\
+\bottomrule
+\end{longtable}}
+
+{\setlength{\tabcolsep}{3pt}\begin{longtable}{@{}p{0.07\linewidth}p{0.09\linewidth}p{0.15\linewidth}p{0.14\linewidth}p{0.16\linewidth}p{0.1\linewidth}p{0.17\linewidth}@{}}
+\caption{S3 value move from Jupiter to the Earth hub, conditional trace from reset.}\\
+\toprule
+Time (h) & Actor & Knows & Action & Packet & Arrival & State after \\
+\midrule
+\endhead
+0.0000 & Jupiter ledger & request from client; destination state unknown & debit 100 into hold; send TRANSFER & backbone Jupiter $\to$ RB $\to$ Earth, $\times$1, launch 0.0003 & 0.8487 (p 0.885) & Jupiter cash 900.00; Jupiter hold 100.00; Earth cash 1100.00 \\
+0.8487 & Earth hub & first copy of T1; ID not tombstoned & credit 100; send CREDITED & backbone Earth $\to$ RB $\to$ Jupiter, $\times$1, launch 0.8490 & 1.6975 (p 0.885) & Jupiter cash 900.00; Earth cash 1100.00 \\
+\bottomrule
+\end{longtable}}
+
+{\setlength{\tabcolsep}{3pt}\begin{longtable}{@{}p{0.07\linewidth}p{0.09\linewidth}p{0.15\linewidth}p{0.14\linewidth}p{0.16\linewidth}p{0.1\linewidth}p{0.17\linewidth}@{}}
+\caption{S3 value move from Neptune to the Earth hub, conditional trace from reset.}\\
+\toprule
+Time (h) & Actor & Knows & Action & Packet & Arrival & State after \\
+\midrule
+\endhead
+0.0000 & Operator D & request from client; destination state unknown & debit 100 into hold; send TRANSFER & backbone Neptune $\to$ RA $\to$ Earth, $\times$1, launch 0.0003 & 4.1747 (p 0.548) & Neptune cash 900.00; Neptune hold 100.00; Earth cash 1100.00 \\
+4.1747 & Earth hub & first copy of T1; ID not tombstoned & credit 100; send CREDITED & backbone Earth $\to$ RA $\to$ Neptune, $\times$1, launch 4.1749 & 8.3493 (p 0.548) & Neptune cash 900.00; Earth cash 1100.00 \\
+\bottomrule
+\end{longtable}}

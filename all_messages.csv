@@ -1,0 +1,683 @@
+section,run,message,from,to,route,copies,originations,launches,sent_h,arrived_h
+S1,value,TRANSFER T1,Neptune,Mars,Neptune-RA-Mars,1,1,4,0.0,4.114103
+S1,value,CREDITED T1,Mars,Neptune,Mars-RA-Neptune,1,1,4,4.114103,8.228201
+S1,long,MARGIN DEPOSIT,Mercury,Earth,Mercury-RA-Earth,3,3,12,0.0,0.767068
+S1,long,CREDITED,Earth,Mercury,Earth-RA-Mercury,1,1,4,0.767068,1.534109
+S1,long,ORDER open,Mercury,Earth,Mercury-RA-Earth,3,3,12,0.5,1.267021
+S1,long,FILL,Earth,Mercury,Earth-RA-Mercury,1,1,4,2.4,3.166888
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,24.0,24.764801
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,48.0,48.762359
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,72.0,72.75979
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,96.0,96.757096
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,120.0,120.75428
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,144.0,144.751345
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,168.0,168.748293
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,192.0,192.745127
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,216.0,216.74185
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,240.0,240.738464
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,264.0,264.734973
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,288.0,288.731379
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,312.0,312.727685
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,336.0,336.723895
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,360.0,360.720012
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,384.0,384.716039
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,408.0,408.711981
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,432.0,432.707842
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,456.0,456.703628
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,480.0,480.699342
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,504.0,504.694992
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,528.0,528.690584
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,552.0,552.686125
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,576.0,576.681624
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,600.0,600.677089
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,624.0,624.672533
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,648.0,648.667965
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,672.0,672.663401
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,696.0,696.658854
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,720.0,720.654341
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,744.0,744.649881
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,768.0,768.645495
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,792.0,792.641206
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,816.0,816.637038
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,840.0,840.63302
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,864.0,864.629181
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,888.0,888.625554
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,912.0,912.62217
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,936.0,936.619066
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,960.0,960.616276
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,984.0,984.613836
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1008.0,1008.61178
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1032.0,1032.610137
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1056.0,1056.608937
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1080.0,1080.608199
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1104.0,1104.607941
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1128.0,1128.608169
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1152.0,1152.608883
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1176.0,1176.610073
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1200.0,1200.611721
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1224.0,1224.613801
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1248.0,1248.61628
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1272.0,1272.619121
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1296.0,1296.62228
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1320.0,1320.625714
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1344.0,1344.629378
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1368.0,1368.633227
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1392.0,1392.63722
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1416.0,1416.641317
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1440.0,1440.645482
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1464.0,1464.649683
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1488.0,1488.653891
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1512.0,1512.658081
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1536.0,1536.662232
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1560.0,1560.666325
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1584.0,1584.670346
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1608.0,1608.674281
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1632.0,1632.67812
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1656.0,1656.681856
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1680.0,1680.685481
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1704.0,1704.68899
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1728.0,1728.69238
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1752.0,1752.695647
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1776.0,1776.69879
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1800.0,1800.701807
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1824.0,1824.704697
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1848.0,1848.707461
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1872.0,1872.710097
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1896.0,1896.712607
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1920.0,1920.714991
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1944.0,1944.717248
+S1,long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,1968.0,1968.719381
+S1,long,SYN re-pin,Mercury,Earth,Mercury-RA-Earth,1,1,4,1968.0,1968.719377
+S1,long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,1992.0,1992.752652
+S1,long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,2016.0,2016.753648
+S1,long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,2040.0,2040.754647
+S1,long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,2064.0,2064.755643
+S1,long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,2088.0,2088.756627
+S1,long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,2112.0,2112.757592
+S1,long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,2136.0,2136.758532
+S1,long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,2160.0,2160.75944
+S1,long,EXPIRY PAYOUT + IM release,Earth,Mercury,Earth-RB-Mercury,1,1,4,2160.9,2161.659473
+S1,long,CREDITED,Mercury,Earth,Mercury-RB-Earth,1,1,4,2161.659473,2162.418803
+S1,rise,ORDER open,Neptune,Earth,Neptune-RA-Earth,7,7,28,-3.0,1.174746
+S1,rise,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,0.01,4.184807
+S1,rise,ORDER open,Mars,Earth,Mars-RA-Earth,3,3,12,-3.0,-2.434798
+S1,rise,FILL,Earth,Mars,Earth-RA-Mars,1,1,4,0.01,0.575198
+S1,rise,MARGIN CALL,Earth,Mars,Earth-RA-Mars,3,3,12,1.5,2.065153
+S1,rise,TOP-UP,Mars,Earth,Mars-RA-Earth,3,3,12,2.065153,2.6302
+S1,rise,CREDITED,Earth,Mars,Earth-RA-Mars,1,1,4,2.6302,3.195318
+S1,rise,MARGIN CALL,Earth,Mars,Earth-RA-Mars,3,3,12,4.5,5.065061
+S1,rise,TOP-UP,Mars,Earth,Mars-RA-Earth,3,3,12,5.065061,5.630017
+S1,rise,CREDITED,Earth,Mars,Earth-RA-Mars,1,1,4,5.630017,6.195044
+S1,rise,MARGIN CALL,Earth,Mars,Earth-RA-Mars,3,3,12,7.5,8.06497
+S1,rise,TOP-UP,Mars,Earth,Mars-RA-Earth,3,3,12,8.06497,8.629835
+S1,rise,CREDITED,Earth,Mars,Earth-RA-Mars,1,1,4,8.629835,9.19477
+S1,rise,MARGIN CALL,Earth,Mars,Earth-RA-Mars,3,3,12,10.5,11.064879
+S1,rise,TOP-UP,Mars,Earth,Mars-RA-Earth,3,3,12,11.064879,11.629653
+S1,rise,CREDITED,Earth,Mars,Earth-RA-Mars,1,1,4,11.629653,12.194498
+S1,rise,MARGIN CALL,Earth,Mars,Earth-RA-Mars,3,3,12,13.5,14.064788
+S1,rise,TOP-UP,Mars,Earth,Mars-RA-Earth,3,3,12,14.064788,14.629472
+S1,rise,CREDITED,Earth,Mars,Earth-RA-Mars,1,1,4,14.629472,15.194226
+S1,fall,ORDER open,Neptune,Earth,Neptune-RA-Earth,7,7,28,-3.0,1.174746
+S1,fall,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,0.01,4.184807
+S1,fall,ORDER open,Mars,Earth,Mars-RA-Earth,3,3,12,-3.0,-2.434798
+S1,fall,FILL,Earth,Mars,Earth-RA-Mars,1,1,4,0.01,0.575198
+S1,fall,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,3.0,7.174721
+S1,fall,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,7.174721,11.349177
+S1,fall,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,11.349177,15.52366
+S1,fall,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,13.5,17.674422
+S1,fall,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,17.674422,21.848582
+S1,fall,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,21.848582,26.022768
+S2,S2_maint,ORDER open,Neptune,Earth,Neptune-RB-Earth,8,8,32,-3.0,1.918295
+S2,S2_maint,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,0.01,10.174358
+S2,S2_maint,ORDER open,Mars,Earth,Mars-RA-Earth,3,3,12,-3.0,-2.434798
+S2,S2_maint,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,0.01,0.831206
+S2,S2_maint,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,3.0,10.174358
+S2,S2_maint,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,10.174358,14.348729
+S2,S2_maint,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,14.348729,18.523127
+S2,S2_maint,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,16.5,20.674337
+S2,S2_maint,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,20.674337,24.848413
+S2,S2_maint,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,24.848413,29.022515
+S2,S2_nomaint,ORDER open,Neptune,Earth,Neptune-RB-Earth,8,8,32,-3.0,1.918295
+S2,S2_nomaint,FILL,Earth,Neptune,Earth-RB-Neptune,1,1,4,0.01,4.928341
+S2,S2_nomaint,ORDER open,Mars,Earth,Mars-RA-Earth,3,3,12,-3.0,-2.434798
+S2,S2_nomaint,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,0.01,0.831206
+S2,S2_nomaint,MARGIN CALL,Earth,Neptune,Earth-RB-Neptune,8,8,32,3.0,7.91833
+S2,S2_nomaint,TOP-UP,Neptune,Earth,Neptune-RA-Earth,8,8,32,7.91833,12.092765
+S2,S2_nomaint,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,12.092765,16.267227
+S2,S2_nomaint,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,15.0,19.17438
+S2,S2_nomaint,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,19.17438,23.348497
+S2,S2_nomaint,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,23.348497,27.522641
+S2,S2_maint_12h,ORDER open,Neptune,Earth,Neptune-RB-Earth,8,8,32,-3.0,1.918295
+S2,S2_maint_12h,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,0.01,16.174187
+S2,S2_maint_12h,ORDER open,Mars,Earth,Mars-RA-Earth,3,3,12,-3.0,-2.434798
+S2,S2_maint_12h,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,0.01,0.831206
+S2,S2_maint_12h,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,3.0,16.174187
+S2,S2_maint_12h,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,16.174187,20.348389
+S2,S2_maint_12h,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,20.348389,24.522617
+S2,S2_maint_12h,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,22.5,26.674168
+S2,S2_maint_12h,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,26.674168,30.848076
+S2,S2_maint_12h,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,30.848076,35.022011
+S2,S2_base,ORDER open,Neptune,Earth,Neptune-RA-Earth,7,7,28,-3.0,1.174746
+S2,S2_base,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,0.01,4.184807
+S2,S2_base,ORDER open,Mars,Earth,Mars-RA-Earth,3,3,12,-3.0,-2.434798
+S2,S2_base,FILL,Earth,Mars,Earth-RA-Mars,1,1,4,0.01,0.575198
+S2,S2_base,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,3.0,7.174721
+S2,S2_base,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,7.174721,11.349177
+S2,S2_base,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,11.349177,15.52366
+S2,S2_base,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,13.5,17.674422
+S2,S2_base,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,17.674422,21.848582
+S2,S2_base,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,21.848582,26.022768
+S3,S3_Ceres,TRANSFER T1,Ceres,Earth,Ceres-RA-Earth,1,1,4,0.0,0.556168
+S3,S3_Ceres,CREDITED T1,Earth,Ceres,Earth-RA-Ceres,1,1,4,0.556168,1.112377
+S3,S3_Jupiter,TRANSFER T1,Jupiter,Earth,Jupiter-RB-Earth,1,1,4,0.0,0.848719
+S3,S3_Jupiter,CREDITED T1,Earth,Jupiter,Earth-RB-Jupiter,1,1,4,0.848719,1.697456
+S3,S3_Neptune,TRANSFER T1,Neptune,Earth,Neptune-RA-Earth,1,1,4,0.0,4.174661
+S3,S3_Neptune,CREDITED T1,Earth,Neptune,Earth-RA-Neptune,1,1,4,4.174661,8.349348
+E5,E5_+1y_value,TRANSFER T1,Neptune,Mars,Neptune-RB-Mars,1,1,4,8766.0,8770.767276
+E5,E5_+1y_value,CREDITED T1,Mars,Neptune,Mars-RB-Neptune,1,1,4,8770.767276,8775.534528
+E5,E5_+1y_long,MARGIN DEPOSIT,Mercury,Earth,Mercury-RB-Earth,3,3,12,8766.0,8766.890556
+E5,E5_+1y_long,CREDITED,Earth,Mercury,Earth-RB-Mercury,1,1,4,8766.890556,8767.781328
+E5,E5_+1y_long,ORDER open,Mercury,Earth,Mercury-RB-Earth,3,3,12,8766.5,8767.390632
+E5,E5_+1y_long,FILL,Earth,Mercury,Earth-RB-Mercury,1,1,4,8768.4,8769.291002
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8790.0,8790.894302
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8814.0,8814.89798
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8838.0,8838.901663
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8862.0,8862.905343
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8886.0,8886.909012
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8910.0,8910.912662
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8934.0,8934.916284
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8958.0,8958.91987
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,8982.0,8982.92341
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,9006.0,9006.926895
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,9030.0,9030.930315
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,9054.0,9054.933661
+E5,E5_+1y_long,SYN re-pin,Mercury,Earth,Mercury-RB-Earth,1,1,4,9054.0,9054.933571
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9078.0,9078.908424
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9102.0,9102.905223
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9126.0,9126.901813
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9150.0,9150.898192
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9174.0,9174.894357
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9198.0,9198.890308
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9222.0,9222.886043
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9246.0,9246.881564
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9270.0,9270.876873
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9294.0,9294.871973
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9318.0,9318.866872
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9342.0,9342.861578
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9366.0,9366.856103
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9390.0,9390.850462
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9414.0,9414.844673
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9438.0,9438.838761
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9462.0,9462.832751
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9486.0,9486.826675
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9510.0,9510.82057
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9534.0,9534.814475
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9558.0,9558.808432
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9582.0,9582.802488
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9606.0,9606.796688
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9630.0,9630.791079
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9654.0,9654.785704
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9678.0,9678.780605
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9702.0,9702.775818
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9726.0,9726.771375
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9750.0,9750.767298
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9774.0,9774.763606
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9798.0,9798.760307
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9822.0,9822.757405
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9846.0,9846.754895
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9870.0,9870.752769
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9894.0,9894.751011
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9918.0,9918.749605
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9942.0,9942.748528
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9966.0,9966.747757
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,9990.0,9990.747267
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10014.0,10014.747034
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10038.0,10038.747032
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10062.0,10062.747237
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10086.0,10086.747623
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10110.0,10110.748169
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10134.0,10134.748851
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10158.0,10158.749651
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10182.0,10182.750548
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10206.0,10206.751524
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10230.0,10230.752564
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10254.0,10254.753652
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10278.0,10278.754774
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10302.0,10302.755918
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10326.0,10326.757071
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10350.0,10350.758224
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10374.0,10374.759366
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10398.0,10398.760489
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10422.0,10422.761584
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10446.0,10446.762644
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10470.0,10470.763663
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10494.0,10494.764634
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10518.0,10518.765551
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10542.0,10542.766409
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10566.0,10566.767203
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10590.0,10590.767929
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10614.0,10614.768581
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10638.0,10638.769156
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10662.0,10662.76965
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10686.0,10686.77006
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10710.0,10710.77038
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10734.0,10734.770609
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10758.0,10758.770742
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10782.0,10782.770776
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10806.0,10806.770707
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10830.0,10830.770532
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10854.0,10854.770247
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10878.0,10878.769849
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10902.0,10902.769334
+E5,E5_+1y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,10926.0,10926.768698
+E5,E5_+1y_long,EXPIRY PAYOUT + IM release,Earth,Mercury,Earth-RA-Mercury,1,1,4,10926.9,10927.668672
+E5,E5_+1y_long,CREDITED,Mercury,Earth,Mercury-RA-Earth,1,1,4,10927.668672,10928.437212
+E5,E5_+1y_rise,ORDER open,Neptune,Earth,Neptune-RA-Earth,8,8,32,8763.0,8767.806815
+E5,E5_+1y_rise,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,8766.01,8770.816873
+E5,E5_+1y_rise,ORDER open,Mars,Earth,Mars-RB-Earth,3,3,12,8763.0,8763.786149
+E5,E5_+1y_rise,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,8766.01,8766.796412
+E5,E5_+1y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,8767.5,8768.28653
+E5,E5_+1y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,8768.28653,8769.0731
+E5,E5_+1y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,8769.0731,8769.859755
+E5,E5_+1y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,8772.0,8772.786888
+E5,E5_+1y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,8772.786888,8773.573815
+E5,E5_+1y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,8773.573815,8774.360828
+E5,E5_+1y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,8776.5,8777.287245
+E5,E5_+1y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,8777.287245,8778.074529
+E5,E5_+1y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,8778.074529,8778.861898
+E5,E5_+1y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,8781.0,8781.787602
+E5,E5_+1y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,8781.787602,8782.575242
+E5,E5_+1y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,8782.575242,8783.362968
+E5,E5_+1y_fall,ORDER open,Neptune,Earth,Neptune-RA-Earth,8,8,32,8763.0,8767.806815
+E5,E5_+1y_fall,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,8766.01,8770.816873
+E5,E5_+1y_fall,ORDER open,Mars,Earth,Mars-RB-Earth,3,3,12,8763.0,8763.786149
+E5,E5_+1y_fall,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,8766.01,8766.796412
+E5,E5_+1y_fall,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,8,8,32,8769.0,8773.806855
+E5,E5_+1y_fall,TOP-UP,Neptune,Earth,Neptune-RA-Earth,8,8,32,8773.806855,8778.613602
+E5,E5_+1y_fall,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,8778.613602,8783.420397
+E5,E5_+1y_fall,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,8,8,32,8781.0,8785.806779
+E5,E5_+1y_fall,TOP-UP,Neptune,Earth,Neptune-RA-Earth,8,8,32,8785.806779,8790.613447
+E5,E5_+1y_fall,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,8790.613447,8795.420162
+E5,E5_+10y_value,TRANSFER T1,Neptune,Mars,Neptune-RA-Mars,1,1,4,87660.0,87664.414135
+E5,E5_+10y_value,CREDITED T1,Mars,Neptune,Mars-RA-Neptune,1,1,4,87664.414135,87668.828279
+E5,E5_+10y_long,MARGIN DEPOSIT,Mercury,Earth,Mercury-RA-Earth,3,3,12,87660.0,87660.748738
+E5,E5_+10y_long,CREDITED,Earth,Mercury,Earth-RA-Mercury,1,1,4,87660.748738,87661.497369
+E5,E5_+10y_long,ORDER open,Mercury,Earth,Mercury-RA-Earth,3,3,12,87660.5,87661.248659
+E5,E5_+10y_long,FILL,Earth,Mercury,Earth-RA-Mercury,1,1,4,87662.4,87663.148372
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87684.0,87684.745151
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87708.0,87708.741961
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87732.0,87732.739203
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87756.0,87756.736893
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87780.0,87780.735036
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87804.0,87804.733631
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87828.0,87828.732664
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87852.0,87852.732118
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87876.0,87876.731966
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87900.0,87900.732175
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87924.0,87924.732711
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87948.0,87948.733534
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87972.0,87972.734607
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,87996.0,87996.735888
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88020.0,88020.737342
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88044.0,88044.738932
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88068.0,88068.740624
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88092.0,88092.742388
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88116.0,88116.744196
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88140.0,88140.746023
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88164.0,88164.747848
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88188.0,88188.74965
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88212.0,88212.751414
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88236.0,88236.753123
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88260.0,88260.754767
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88284.0,88284.756333
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88308.0,88308.757813
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88332.0,88332.7592
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88356.0,88356.760485
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88380.0,88380.761665
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88404.0,88404.762735
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88428.0,88428.76369
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88452.0,88452.764528
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88476.0,88476.765247
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88500.0,88500.765843
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88524.0,88524.766317
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88548.0,88548.766665
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88572.0,88572.766888
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88596.0,88596.766985
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88620.0,88620.766954
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88644.0,88644.766796
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88668.0,88668.766509
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88692.0,88692.766095
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88716.0,88716.765551
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88740.0,88740.764879
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88764.0,88764.764078
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,88788.0,88788.763147
+E5,E5_+10y_long,SYN re-pin,Mercury,Earth,Mercury-RA-Earth,1,1,4,88788.0,88788.76306
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,88812.0,88812.87915
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,88836.0,88836.88087
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,88860.0,88860.882577
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,88884.0,88884.884265
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,88908.0,88908.885926
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,88932.0,88932.887554
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,88956.0,88956.889141
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,88980.0,88980.890683
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,89004.0,89004.892171
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,89028.0,89028.8936
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,89052.0,89052.894962
+E5,E5_+10y_long,SYN re-pin,Mercury,Earth,Mercury-RB-Earth,1,1,4,89052.0,89052.894795
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89076.0,89076.741752
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89100.0,89100.739101
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89124.0,89124.736314
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89148.0,89148.733389
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89172.0,89172.730328
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89196.0,89196.727128
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89220.0,89220.723791
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89244.0,89244.720316
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89268.0,89268.716704
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89292.0,89292.712956
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89316.0,89316.709074
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89340.0,89340.705061
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89364.0,89364.700918
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89388.0,89388.696651
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89412.0,89412.692265
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89436.0,89436.687767
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89460.0,89460.683166
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89484.0,89484.678472
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89508.0,89508.673699
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89532.0,89532.668862
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89556.0,89556.66398
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89580.0,89580.659075
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89604.0,89604.654174
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89628.0,89628.649304
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89652.0,89652.644499
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89676.0,89676.639795
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89700.0,89700.635234
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89724.0,89724.630856
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89748.0,89748.626707
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89772.0,89772.622832
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89796.0,89796.619275
+E5,E5_+10y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,89820.0,89820.616078
+E5,E5_+10y_long,EXPIRY PAYOUT + IM release,Earth,Mercury,Earth-RA-Mercury,1,1,4,89820.9,89821.515966
+E5,E5_+10y_long,CREDITED,Mercury,Earth,Mercury-RA-Earth,1,1,4,89821.515966,89822.131909
+E5,E5_+10y_rise,ORDER open,Neptune,Earth,Neptune-RA-Earth,7,7,28,87657.0,87661.326841
+E5,E5_+10y_rise,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,87660.01,87664.336919
+E5,E5_+10y_rise,ORDER open,Mars,Earth,Mars-RB-Earth,3,3,12,87657.0,87657.699096
+E5,E5_+10y_rise,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,87660.01,87660.709134
+E5,E5_+10y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,87661.5,87662.199141
+E5,E5_+10y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,87662.199141,87662.89826
+E5,E5_+10y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,87662.89826,87663.597407
+E5,E5_+10y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,87664.5,87665.199154
+E5,E5_+10y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,87665.199154,87665.898286
+E5,E5_+10y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,87665.898286,87666.597446
+E5,E5_+10y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,87667.5,87668.199167
+E5,E5_+10y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,87668.199167,87668.898312
+E5,E5_+10y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,87668.898312,87669.597485
+E5,E5_+10y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,87670.5,87671.19918
+E5,E5_+10y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,87671.19918,87671.898338
+E5,E5_+10y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,87671.898338,87672.597524
+E5,E5_+10y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,87673.5,87674.199193
+E5,E5_+10y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,87674.199193,87674.898363
+E5,E5_+10y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,87674.898363,87675.597562
+E5,E5_+10y_fall,ORDER open,Neptune,Earth,Neptune-RA-Earth,7,7,28,87657.0,87661.326841
+E5,E5_+10y_fall,FILL,Earth,Neptune,Earth-RA-Neptune,1,1,4,87660.01,87664.336919
+E5,E5_+10y_fall,ORDER open,Mars,Earth,Mars-RB-Earth,3,3,12,87657.0,87657.699096
+E5,E5_+10y_fall,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,87660.01,87660.709134
+E5,E5_+10y_fall,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,87663.0,87667.32684
+E5,E5_+10y_fall,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,87667.32684,87671.653407
+E5,E5_+10y_fall,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,87671.653407,87675.980018
+E5,E5_+10y_fall,MARGIN CALL,Earth,Neptune,Earth-RA-Neptune,7,7,28,87673.5,87677.826561
+E5,E5_+10y_fall,TOP-UP,Neptune,Earth,Neptune-RA-Earth,7,7,28,87677.826561,87682.152849
+E5,E5_+10y_fall,CREDITED,Earth,Neptune,Earth-RA-Neptune,1,1,4,87682.152849,87686.479181
+E5,E5_+100y_value,TRANSFER T1,Neptune,Mars,Neptune-RB-Mars,1,1,4,876600.0,876604.31973
+E5,E5_+100y_value,CREDITED T1,Mars,Neptune,Mars-RB-Neptune,1,1,4,876604.31973,876608.639458
+E5,E5_+100y_long,MARGIN DEPOSIT,Mercury,Earth,Mercury-RA-Earth,3,3,12,876600.0,876600.704793
+E5,E5_+100y_long,CREDITED,Earth,Mercury,Earth-RA-Mercury,1,1,4,876600.704793,876601.409427
+E5,E5_+100y_long,ORDER open,Mercury,Earth,Mercury-RA-Earth,3,3,12,876600.5,876601.20471
+E5,E5_+100y_long,FILL,Earth,Mercury,Earth-RA-Mercury,1,1,4,876602.4,876603.104355
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876624.0,876624.700759
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876648.0,876648.69669
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876672.0,876672.692549
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876696.0,876696.688343
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876720.0,876720.684078
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876744.0,876744.679761
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876768.0,876768.6754
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876792.0,876792.671006
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876816.0,876816.666589
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876840.0,876840.662161
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876864.0,876864.657736
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876888.0,876888.65333
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876912.0,876912.648959
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876936.0,876936.644644
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876960.0,876960.640407
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,876984.0,876984.636271
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877008.0,877008.632263
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877032.0,877032.628413
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877056.0,877056.624751
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877080.0,877080.621312
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877104.0,877104.618129
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877128.0,877128.61524
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877152.0,877152.61268
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877176.0,877176.610486
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877200.0,877200.608691
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877224.0,877224.607326
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877248.0,877248.606416
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877272.0,877272.605982
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877296.0,877296.606036
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877320.0,877320.606583
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877344.0,877344.607618
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877368.0,877368.609127
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877392.0,877392.611089
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877416.0,877416.613474
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877440.0,877440.616248
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877464.0,877464.61937
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877488.0,877488.622798
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877512.0,877512.626486
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877536.0,877536.630391
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877560.0,877560.63447
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877584.0,877584.638683
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877608.0,877608.642991
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877632.0,877632.647362
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877656.0,877656.651763
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877680.0,877680.656168
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877704.0,877704.660555
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877728.0,877728.664902
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877752.0,877752.669193
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877776.0,877776.673413
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877800.0,877800.67755
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877824.0,877824.681595
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877848.0,877848.68554
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877872.0,877872.689377
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877896.0,877896.693102
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877920.0,877920.696711
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877944.0,877944.700201
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877968.0,877968.703569
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,877992.0,877992.706814
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878016.0,878016.709935
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878040.0,878040.712931
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878064.0,878064.715801
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878088.0,878088.718545
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878112.0,878112.721163
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878136.0,878136.723656
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878160.0,878160.726024
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878184.0,878184.728266
+E5,E5_+100y_long,SYN re-pin,Mercury,Earth,Mercury-RA-Earth,1,1,4,878184.0,878184.728275
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878208.0,878208.739308
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878232.0,878232.74029
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878256.0,878256.741276
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878280.0,878280.742259
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878304.0,878304.74323
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878328.0,878328.744185
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878352.0,878352.745115
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878376.0,878376.746017
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878400.0,878400.746883
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878424.0,878424.747709
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,878448.0,878448.748489
+E5,E5_+100y_long,SYN re-pin,Mercury,Earth,Mercury-RB-Earth,1,1,4,878448.0,878448.748328
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878472.0,878472.745518
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878496.0,878496.746155
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878520.0,878520.746668
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878544.0,878544.747058
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878568.0,878568.747324
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878592.0,878592.747466
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878616.0,878616.747484
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878640.0,878640.747378
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878664.0,878664.747149
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878688.0,878688.746796
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878712.0,878712.74632
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878736.0,878736.745722
+E5,E5_+100y_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,878760.0,878760.745002
+E5,E5_+100y_long,EXPIRY PAYOUT + IM release,Earth,Mercury,Earth-RA-Mercury,1,1,4,878760.9,878761.644972
+E5,E5_+100y_long,CREDITED,Mercury,Earth,Mercury-RA-Earth,1,1,4,878761.644972,878762.390067
+E5,E5_+100y_rise,ORDER open,Neptune,Earth,Neptune-RB-Earth,8,8,32,876597.0,876601.625383
+E5,E5_+100y_rise,FILL,Earth,Neptune,Earth-RB-Neptune,1,1,4,876600.01,876604.635544
+E5,E5_+100y_rise,ORDER open,Mars,Earth,Mars-RB-Earth,3,3,12,876597.0,876597.641898
+E5,E5_+100y_rise,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,876600.01,876600.651717
+E5,E5_+100y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,876601.5,876602.141607
+E5,E5_+100y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,876602.141607,876602.783129
+E5,E5_+100y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,876602.783129,876603.424642
+E5,E5_+100y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,876604.5,876605.141387
+E5,E5_+100y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,876605.141387,876605.782688
+E5,E5_+100y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,876605.782688,876606.423982
+E5,E5_+100y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,876607.5,876608.141167
+E5,E5_+100y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,876608.141167,876608.782248
+E5,E5_+100y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,876608.782248,876609.423321
+E5,E5_+100y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,876610.5,876611.140947
+E5,E5_+100y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,876611.140947,876611.781807
+E5,E5_+100y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,876611.781807,876612.42266
+E5,E5_+100y_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,876613.5,876614.140727
+E5,E5_+100y_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,876614.140727,876614.781367
+E5,E5_+100y_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,876614.781367,876615.421999
+E5,E5_+100y_fall,ORDER open,Neptune,Earth,Neptune-RB-Earth,8,8,32,876597.0,876601.625383
+E5,E5_+100y_fall,FILL,Earth,Neptune,Earth-RB-Neptune,1,1,4,876600.01,876604.635544
+E5,E5_+100y_fall,ORDER open,Mars,Earth,Mars-RB-Earth,3,3,12,876597.0,876597.641898
+E5,E5_+100y_fall,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,876600.01,876600.651717
+E5,E5_+100y_fall,MARGIN CALL,Earth,Neptune,Earth-RB-Neptune,8,8,32,876603.0,876607.625198
+E5,E5_+100y_fall,TOP-UP,Neptune,Earth,Neptune-RB-Earth,8,8,32,876607.625198,876612.249348
+E5,E5_+100y_fall,CREDITED,Earth,Neptune,Earth-RB-Neptune,1,1,4,876612.249348,876616.873473
+E5,E5_+100y_fall,MARGIN CALL,Earth,Neptune,Earth-RB-Neptune,8,8,32,876615.0,876619.623805
+E5,E5_+100y_fall,TOP-UP,Neptune,Earth,Neptune-RB-Earth,8,8,32,876619.623805,876624.246561
+E5,E5_+100y_fall,CREDITED,Earth,Neptune,Earth-RB-Neptune,1,1,4,876624.246561,876628.869291
+E5,E5_difficult_value,TRANSFER T1,Neptune,Mars,Neptune-RA-Mars,1,1,4,650208.0,650212.480906
+E5,E5_difficult_value,CREDITED T1,Mars,Neptune,Mars-RA-Neptune,1,1,4,650212.480906,650216.961846
+E5,E5_difficult_long,MARGIN DEPOSIT,Mercury,Earth,Mercury-RB-Earth,3,3,12,650208.0,650208.844022
+E5,E5_difficult_long,CREDITED,Earth,Mercury,Earth-RB-Mercury,1,1,4,650208.844022,650209.687856
+E5,E5_difficult_long,ORDER open,Mercury,Earth,Mercury-RB-Earth,3,3,12,650208.5,650209.34401
+E5,E5_difficult_long,FILL,Earth,Mercury,Earth-RB-Mercury,1,1,4,650210.4,650211.243795
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650232.0,650232.84323
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650256.0,650256.842525
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650280.0,650280.841744
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650304.0,650304.840891
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650328.0,650328.839974
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650352.0,650352.838996
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650376.0,650376.837965
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650400.0,650400.836885
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650424.0,650424.835763
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650448.0,650448.834604
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650472.0,650472.833416
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650496.0,650496.832205
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650520.0,650520.830978
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650544.0,650544.829742
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650568.0,650568.828505
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650592.0,650592.827276
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650616.0,650616.826062
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650640.0,650640.824874
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650664.0,650664.82372
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650688.0,650688.822612
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650712.0,650712.82156
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650736.0,650736.820576
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650760.0,650760.819672
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650784.0,650784.818862
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650808.0,650808.818158
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650832.0,650832.817576
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650856.0,650856.81713
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650880.0,650880.816837
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650904.0,650904.816712
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650928.0,650928.816773
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650952.0,650952.817036
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,650976.0,650976.817518
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651000.0,651000.818238
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651024.0,651024.819211
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651048.0,651048.820455
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651072.0,651072.821983
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651096.0,651096.823811
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651120.0,651120.82595
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651144.0,651144.82841
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651168.0,651168.831197
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651192.0,651192.834314
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651216.0,651216.837761
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651240.0,651240.841531
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651264.0,651264.845615
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651288.0,651288.849997
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651312.0,651312.854655
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651336.0,651336.859562
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651360.0,651360.864688
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651384.0,651384.869995
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651408.0,651408.875443
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651432.0,651432.88099
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651456.0,651456.886592
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651480.0,651480.892203
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651504.0,651504.897781
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651528.0,651528.903283
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651552.0,651552.908671
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651576.0,651576.913912
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RB-Mercury,1,1,4,651600.0,651600.918974
+E5,E5_difficult_long,SYN re-pin,Mercury,Earth,Mercury-RB-Earth,1,1,4,651600.0,651600.918864
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651624.0,651624.920925
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651648.0,651648.918027
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651672.0,651672.91486
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651696.0,651696.911447
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651720.0,651720.907811
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651744.0,651744.903974
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651768.0,651768.89996
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651792.0,651792.895789
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651816.0,651816.891481
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651840.0,651840.887058
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651864.0,651864.882537
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651888.0,651888.877936
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651912.0,651912.873271
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651936.0,651936.868558
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651960.0,651960.863812
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,651984.0,651984.859045
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652008.0,652008.85427
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652032.0,652032.8495
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652056.0,652056.844745
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652080.0,652080.840017
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652104.0,652104.835325
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652128.0,652128.830679
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652152.0,652152.826088
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652176.0,652176.82156
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652200.0,652200.817105
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652224.0,652224.81273
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652248.0,652248.808442
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652272.0,652272.80425
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652296.0,652296.800161
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652320.0,652320.796181
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652344.0,652344.792317
+E5,E5_difficult_long,STATEMENT,Earth,Mercury,Earth-RA-Mercury,1,1,4,652368.0,652368.788577
+E5,E5_difficult_long,EXPIRY PAYOUT + IM release,Earth,Mercury,Earth-RA-Mercury,1,1,4,652368.9,652369.688439
+E5,E5_difficult_long,CREDITED,Mercury,Earth,Mercury-RA-Earth,1,1,4,652369.688439,652370.476762
+E5,E5_difficult_rise,ORDER open,Neptune,Earth,Neptune-RA-RB-Earth,9,9,54,650205.0,650210.192874
+E5,E5_difficult_rise,FILL,Earth,Neptune,Earth-RB-RA-Neptune,1,1,6,650208.01,650213.202624
+E5,E5_difficult_rise,ORDER open,Mars,Earth,Mars-RB-Earth,3,3,12,650205.0,650205.98244
+E5,E5_difficult_rise,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,650208.01,650208.992438
+E5,E5_difficult_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,650209.5,650210.482505
+E5,E5_difficult_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,650210.482505,650211.465191
+E5,E5_difficult_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,650211.465191,650212.447784
+E5,E5_difficult_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,650214.0,650214.982706
+E5,E5_difficult_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,650214.982706,650215.965594
+E5,E5_difficult_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,650215.965594,650216.948389
+E5,E5_difficult_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,650218.5,650219.482908
+E5,E5_difficult_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,650219.482908,650220.465997
+E5,E5_difficult_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,650220.465997,650221.448992
+E5,E5_difficult_rise,MARGIN CALL,Earth,Mars,Earth-RB-Mars,3,3,12,650223.0,650223.983108
+E5,E5_difficult_rise,TOP-UP,Mars,Earth,Mars-RB-Earth,3,3,12,650223.983108,650224.966398
+E5,E5_difficult_rise,CREDITED,Earth,Mars,Earth-RB-Mars,1,1,4,650224.966398,650225.949594
+E5,E5_difficult_fall,ORDER open,Neptune,Earth,Neptune-RA-RB-Earth,9,9,54,650205.0,650210.192874
+E5,E5_difficult_fall,FILL,Earth,Neptune,Earth-RB-RA-Neptune,1,1,6,650208.01,650213.202624
+E5,E5_difficult_fall,ORDER open,Mars,Earth,Mars-RB-Earth,3,3,12,650205.0,650205.98244
+E5,E5_difficult_fall,FILL,Earth,Mars,Earth-RB-Mars,1,1,4,650208.01,650208.992438
+E5,E5_difficult_fall,MARGIN CALL,Earth,Neptune,Earth-RB-RA-Neptune,9,9,54,650211.0,650216.193016
+E5,E5_difficult_fall,TOP-UP,Neptune,Earth,Neptune-RB-Earth,9,9,36,650216.193016,650221.191893
+E5,E5_difficult_fall,CREDITED,Earth,Neptune,Earth-RB-Neptune,1,1,4,650221.191893,650226.190754
+E5,E5_difficult_fall,MARGIN CALL,Earth,Neptune,Earth-RB-Neptune,8,8,32,650223.0,650227.998992
+E5,E5_difficult_fall,TOP-UP,Neptune,Earth,Neptune-RB-Earth,8,8,32,650227.998992,650232.998721
+E5,E5_difficult_fall,CREDITED,Earth,Neptune,Earth-RB-Neptune,1,1,4,650232.998721,650237.998434

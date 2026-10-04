@@ -1,0 +1,77 @@
+{
+ "basis_rising_Mars": {
+  "peak": 0.004975124378109501,
+  "band": 0.007313512115898518,
+  "inside": true
+ },
+ "basis_rising_Jupiter": {
+  "peak": 0.004975124378109501,
+  "band": 0.008736861093008563,
+  "inside": true
+ },
+ "basis_rising_Saturn": {
+  "peak": 0.004975124378109501,
+  "band": 0.010661984816142712,
+  "inside": true
+ },
+ "basis_rising_Uranus": {
+  "peak": 0.009925496893641188,
+  "band": 0.01463931604446625,
+  "inside": true
+ },
+ "basis_rising_Neptune": {
+  "peak": 0.01485124069019015,
+  "band": 0.01815887093572531,
+  "inside": true
+ },
+ "basis_falling_Mars": {
+  "peak": 0.005025125628140774,
+  "band": 0.007313512115898518,
+  "inside": true
+ },
+ "basis_falling_Jupiter": {
+  "peak": 0.005025125628140774,
+  "band": 0.008736861093008563,
+  "inside": true
+ },
+ "basis_falling_Saturn": {
+  "peak": 0.005025125628140774,
+  "band": 0.010661984816142712,
+  "inside": true
+ },
+ "basis_falling_Uranus": {
+  "peak": 0.010075503143860102,
+  "band": 0.01463931604446625,
+  "inside": true
+ },
+ "basis_falling_Neptune": {
+  "peak": 0.015151259441065398,
+  "band": 0.01815887093572531,
+  "inside": true
+ },
+ "dvp": {
+  "lockA": 0.0,
+  "lockB_seen": 4.1748072529938325,
+  "lockB_known": 8.349348654268011,
+  "claimB": 12.523917057732541,
+  "claimA": 16.69822168073568,
+  "complete": 16.69822168073568,
+  "TB_min": 13.523917057732541,
+  "TA_rel": 13.523414427741848,
+  "orig": 4,
+  "launch": 16
+ },
+ "expiry_Mercury": 102.13654380892665,
+ "expiry_Venus": 101.40900692398054,
+ "expiry_Mars": 100.52087979712391,
+ "expiry_Ceres": 100.44934217890201,
+ "expiry_Jupiter": 102.78975341561112,
+ "expiry_Saturn": 106.58915086598543,
+ "expiry_Uranus": 117.10060683295814,
+ "expiry_Neptune": 129.39728431492858,
+ "receipts": {
+  "before": 612.0098562628336,
+  "after": 184,
+  "saved": 428.00985626283364
+ }
+}

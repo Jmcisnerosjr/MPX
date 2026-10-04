@@ -1,0 +1,91 @@
+\begin{abstract}
+MPX clears trades for nine settlements at an Earth hub over the brief's relay backbone. Mercury through Jupiter clear every 90 minutes; Saturn, Uranus and Neptune join every fourth batch. Deadlines use the straight-line light-time, so no accepted order can use information from after its cutoff on any path. Deadline messages travel as independent copies sized from the exactly predictable loss, reaching $99.5\%$ on-time in every geometry of 200 years within the 600-origination quota. Transfers are exactly once by construction: only the destination can declare a transfer credited or never credited. Margin covers fat-tailed prices over each member's worst round trip, members hold liquidity of $30\%$ of notional, and a Cover-2 fund is prefunded at the hub. Every number is reproducible from the shipped scripts; all eight toolkit checks pass.
+\end{abstract}
+\vspace{-4pt}
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small\textbf{Contributions.}
+(1) A proof that the Sun can never cut the backbone, and a 200-year scan that provably misses no closure.
+(2) \emph{Light-Cone Clearing}: batch deadlines set by straight-line light-time, fair on every path, including the faster direct service.
+(3) Exactly-once transfers, atomic cross-planet swaps and a single active hub, each with a proof.
+(4) Order copies sized from exactly predictable loss: $99.5\%$ on time in every geometry of 200 years within the 600-origination quota.
+(5) A mapped failure boundary: the member liquidity at which defaults begin, for rising and falling prices alike.}}
+\vspace{2pt}
+
+In 1974 Bankhaus Herstatt failed after receiving one leg of its currency trades and before paying the other, because the second leg was due hours later in another time zone \cite{bisfx}. MPX faces the same problem with light-hours instead of time zones, and resolves it the same way: no obligation is settled on one side before it can be settled on the other.
+\vspace{-6pt}
+\section{Architecture}\label{sec:arch}
+\textbf{Actors.} The \emph{hub} at Earth runs matching and the clearing ledger (members' margin, default fund, MPX capital). Each settlement runs a \emph{home ledger}, the only writer of its clients' cash accounts. \emph{Members} clear at the hub: banks inside Saturn's orbit, and one \emph{operator} per settlement beyond Saturn, which clears for its local clients. Relays A and B forward packets. All messages are signed and carry a unique ID (origin, sequence).
+
+All rules of the model are the brief's \cite{brief}. \textbf{Network facts we rely on} (proved in \cref{sec:guar}, measured in E4): the A--B link never closes; the Sun never blocks both relays from one settlement; every settlement pair has an open route of at most three links at every hour of 200 years.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.62,>=Stealth,font=\small]
+\fill[orange!70] (0,0) circle (0.18); \draw[red!60,dashed] (0,0) circle (0.45);
+\draw[gray,densely dotted] (0,0) circle (2.83);
+\node[draw,fill=teal!15,rounded corners] (A) at (2,2) {Relay A}; \node[draw,fill=teal!15,rounded corners] (B) at (-2,2) {Relay B};
+\node[draw,fill=blue!10] (E) at (1.0,0) {Earth hub};
+\node[draw] (M) at (0.2,-1.5) {Mars}; \node[draw] (J) at (-3.4,-1.2) {Jupiter};
+\node[draw,fill=gray!15] (N) at (7.2,0.4) {Neptune operator};
+\draw[<->] (A)--(B); \draw[<->] (E)--(A); \draw[<->] (E)--(B); \draw[<->] (M)--(A); \draw[<->] (M)--(B); \draw[<->] (J)--(B); \draw[<->] (J)--(A);
+\draw[<->,thick] (N)--(A); \draw[<->,dashed] (N)--(B);
+\node[align=left,anchor=west] at (3.6,-1.6) {fast batch every 1.5 h: Mercury--Jupiter\\ full batch every 6 h: + Saturn, Uranus, Neptune};
+\end{tikzpicture}
+\caption{Topology (not to scale). Every settlement links to both relays; A--B links the relays.}
+\end{figure}
+\vspace{-8pt}
+\section{Operating rulebook}\label{sec:rules}
+\textbf{R1 Sessions.} Each settlement pins the earliest-arriving open candidate route and re-pins, by a one-origination handshake, before every closure predicted from the frozen elements. If all candidates are closed (maintenance, incident), packets hold at the last open node.
+
+\textbf{R2 Batches.} A fast batch clears every $B=1.5\h$ for settlements whose straight-line light-time to Earth never exceeds $0.9\h$ (Mercury, Venus, Earth, Mars, Ceres, Jupiter). Every fourth batch is a full batch that also admits Saturn, Uranus and Neptune. Settlement $k$'s order for cutoff $T_b$ is valid only if it arrives by $D_k = T_b + \lfl(k\to\text{Earth},T_b)$. Settlement $k$ sends at $T_b - (\ell_k - \lfl_k) - 60\,$s, its route's excess over the straight line plus a one-minute margin. The batch clears at $T_b+\max\lfl$ over admitted settlements, fills at one uniform price as in frequent batch auctions \cite{budish2015}, and broadcasts the list of accepted order IDs. The outer cadence is forced by the quota: admitting Saturn, Uranus and Neptune every 3 hours would leave 48 originations of reserve on the worst day of 200 years, below the 56 that margin calls alone reached in E5; every 6 hours leaves 132.
+
+\textbf{R3 Copies and deduplication.} A deadline message is sent as $k$ independent originations, with $k=\lceil\ln 0.005/\ln(1-f)\rceil$ for the route's first-try success $f$, which geometry determines exactly in advance. The receiver acts on the first valid copy of an ID and receipts but ignores the rest. Non-deadline messages (results, statements) go once and rely on hop retries.
+
+\textbf{R4 Late and missing orders.} An order arriving after $D_k$ is \emph{rejected late}, never rolled forward; the accepted-ID broadcast tells the sender, who may resubmit for the next batch.
+
+\textbf{R5 Transfers.} The source ledger debits the amount into a \emph{hold} and sends TRANSFER with expiry $E = t_0 + \min(30\text{ days},\,4R_e)$, four endpoint-retry intervals, which is $100$--$129\h$ depending on the settlement. The destination credits the first copy that arrives before $E$ and returns CREDITED. After $E$, or earlier on the source's CANCEL request, a destination that never credited the ID \emph{tombstones} it, rejects every later copy, and signs NOT-CREDITED; a refund therefore takes one round trip, not 30 days. The source finalizes on CREDITED and refunds on NOT-CREDITED, \emph{never} on a timeout. Funds in flight earn no interest.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,
+  lbl/.style={midway,above=1pt,sloped,fill=white,inner sep=1.5pt},
+  note/.style={font=\small\itshape,text=black!65},
+  head/.style={draw=black!40,rounded corners=2pt,fill=black!4,inner sep=3pt,font=\small}]
+\node[font=\small\bfseries,anchor=west] at (-0.6,0.95) {(a) Delivered};
+\node[head] at (0,0.35) {Source}; \node[head] at (4.4,0.35) {Destination};
+\draw[black!35] (0,0.05)--(0,-4.1); \draw[black!35] (4.4,0.05)--(4.4,-4.1);
+\draw[->,thick] (0,-0.7)--node[lbl]{TRANSFER $T$}(4.4,-1.5);
+\node[note,anchor=east] at (-0.1,-0.7) {debit, hold};
+\node[note,anchor=west] at (4.5,-1.5) {credit once};
+\draw[->,thick] (4.4,-2.3)--node[lbl]{CREDITED $T$}(0,-3.1);
+\node[note,anchor=east] at (-0.1,-3.1) {final};
+\begin{scope}[xshift=7.6cm]
+\node[font=\small\bfseries,anchor=west] at (-0.6,0.95) {(b) Lost, then cancelled};
+\node[head] at (0,0.35) {Source}; \node[head] at (4.4,0.35) {Destination};
+\draw[black!35] (0,0.05)--(0,-4.1); \draw[black!35] (4.4,0.05)--(4.4,-4.1);
+\draw[thick,dashed] (0,-0.7)--node[lbl]{TRANSFER $T$}(2.6,-1.17);
+\node[text=red!70!black,font=\bfseries] at (2.75,-1.2) {$\times$};
+\node[note,anchor=west] at (2.95,-1.2) {lost};
+\node[note,anchor=east] at (-0.1,-0.7) {debit, hold};
+\draw[->,thick] (0,-1.9)--node[lbl]{CANCEL $T$}(4.4,-2.6);
+\node[note,anchor=west] at (4.5,-2.6) {tombstone};
+\draw[->,thick] (4.4,-2.9)--node[lbl]{NOT-CREDITED $T$}(0,-3.7);
+\node[note,anchor=east] at (-0.1,-3.7) {refund};
+\end{scope}
+\end{tikzpicture}
+\caption{R5 transfers. (a) The destination credits the first copy and signs CREDITED. (b) A lost transfer is cancelled; the destination's signed decision, never a timeout, releases the source's hold.}
+\end{figure}
+\vspace{-4pt}
+\textbf{R6 Margin.} All collateral sits at the hub. Initial margin is $\mathrm{IM}=2.62\,\sigma\sqrt{\mathrm{MPOR}}\,N$, with $\mathrm{MPOR}=$ worst 200-year round trip $+\,G+B$, $G=1\h$. Variation margin settles inside the hub at every batch. If collateral falls below $80\%$ of IM, the hub sends a call (as copies) to restore IM, due one round trip plus $G$ later. An unanswered call is resent once; a member defaults only if the resent call also goes unanswered, or if it cannot pay. Members must hold liquid resources of $30\%$ of notional.
+
+\textbf{R7 Default.} The hub closes out the position within one fast batch among members whose round trip is under $1.5\h$, then applies the waterfall: the defaulter's margin, unpaid variation margin and fund share; MPX capital ($25\%$ of the fund); survivors' shares; assessments of up to $1\times$ shares (prefunded in hub escrow beyond Saturn); then haircut variation-margin gains and partial tear-up. The fund is Cover 2 \cite{pfmi} at a $6\,$sd shock: $F=\max_{i\ne j}(S_i+S_j)$, $S_i=(6-2.62)\sigma\sqrt{\mathrm{MPOR}_i}N_i$.
+
+\textbf{R8b Cross-planet swaps.} Assets held at the hub settle payment-versus-payment on the hub's books, both legs at once. An asset held on a home ledger is swapped by hash lock: the buyer locks credits under hash $H$, the seller locks the asset under $H$, the buyer claims the asset by revealing the secret, and the seller claims the credits with it. The seller's lock must outlast the buyer's claim plus one hour; the buyer's lock must outlast the seller's lock by one more light-time plus one hour.
+
+\textbf{R8c Operator local markets.} An operator may run a continuous local market for its clients, quoting within $\text{hub price}\pm(2.62\,\sigma\sqrt{\ell}+0.10\%)$, where $\ell$ is the current light-time from the hub. It nets client flow into one order per full batch.
+
+\textbf{R8d Netting and receipts.} Transfers between the same two ledgers are netted each batch, and relays acknowledge all copies of a batch with one aggregate receipt per hop, as in delay-tolerant networking.
+
+\textbf{R8e Quota priority.} When less than the 132-origination reserve remains in the rolling 24 hours, originations go in this order: margin calls and their answers, incident notices and re-pins, orders, transfers, then statements, which are deferred and merged into the next result.
+
+\textbf{R8f Hub continuity.} A standby hub at Mars mirrors every batch. Earth clears only while it holds a 4-hour lease that Mars has acknowledged; renewals and acknowledgments ride on the batch messages already exchanged with Mars, so they cost no extra originations. Mars may start clearing only after 5 hours without a renewal, after Earth's lease has expired, so the two never clear at once.
+
+\textbf{R8 Incidents.} An incident notice goes out by the direct service and by the backbone. Sessions through an affected relay re-pin at once. A member isolated longer than its MPOR is \emph{hedged, not defaulted}: the hub closes its hub position into a hedge funded by its own margin and returns it at the hedge price when contact resumes.

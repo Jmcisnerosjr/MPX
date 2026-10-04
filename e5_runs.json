@@ -1,0 +1,236 @@
+{
+ "members": [
+  {
+   "n": "Bank A",
+   "w": "Earth",
+   "N": 600,
+   "M": 2.5,
+   "IM": 7.96694369132994,
+   "S": 10.27796552545618,
+   "share": 5.876552213916744
+  },
+  {
+   "n": "Bank B",
+   "w": "Mars",
+   "N": -400,
+   "M": 5.416404200484976,
+   "IM": 7.8178263097232605,
+   "S": 10.085592720177337,
+   "share": 5.76656071492224
+  },
+  {
+   "n": "Operator C",
+   "w": "Jupiter",
+   "N": -350,
+   "M": 6.169324439630145,
+   "IM": 7.30057962986606,
+   "S": 9.418305018682169,
+   "share": 5.385030828503711
+  },
+  {
+   "n": "Operator D",
+   "w": "Neptune",
+   "N": 150,
+   "M": 12.885889849159867,
+   "IM": 4.521879232610104,
+   "S": 5.833569391687843,
+   "share": 3.335414488290823
+  }
+ ],
+ "fund": 20.363558245633516,
+ "skin": 5.090889561408379,
+ "qk": {
+  "Earth": [
+   1.0,
+   0
+  ],
+  "Mars": [
+   0.9976961804723744,
+   3
+  ],
+  "Jupiter": [
+   0.9986100936411909,
+   4
+  ],
+  "Neptune": [
+   0.9968534509230931,
+   9
+  ]
+ },
+ "T2_rising": {
+  "cause_missed": 0.0,
+  "cause_liq": 0.0,
+  "calls_per_run": 11.851,
+  "missed": 0.0037971479200067503,
+  "P_default": 0.0,
+  "P_hedge": 0.0,
+  "mean_loss_beyond": 0.0,
+  "max_loss_beyond": 0.0,
+  "tier_hist": [
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "orig_calls_day_mean": 26.867666666666665,
+  "orig_calls_day_max": 56.0
+ },
+ "T2_falling": {
+  "cause_missed": 0.0,
+  "cause_liq": 0.0,
+  "calls_per_run": 13.1485,
+  "missed": 0.0019393847206905731,
+  "P_default": 0.0,
+  "P_hedge": 0.0,
+  "mean_loss_beyond": 0.0,
+  "max_loss_beyond": 0.0,
+  "tier_hist": [
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "orig_calls_day_mean": 22.4315,
+  "orig_calls_day_max": 48.666666666666664
+ },
+ "T3_rising": {
+  "cause_missed": 0.0,
+  "cause_liq": 0.1845,
+  "calls_per_run": 17.6275,
+  "missed": 0.003772514536945114,
+  "P_default": 0.1845,
+  "P_hedge": 0.00025,
+  "mean_loss_beyond": 4.9131982511691,
+  "max_loss_beyond": 50.2514543410212,
+  "tier_hist": [
+   0.904,
+   0.0,
+   0.0,
+   0.0535,
+   0.02925,
+   0.012,
+   0.001,
+   0.00025
+  ],
+  "orig_calls_day_mean": 40.661166666666674,
+  "orig_calls_day_max": 52.0
+ },
+ "T3_falling": {
+  "cause_missed": 0.0,
+  "cause_liq": 0.002,
+  "calls_per_run": 20.8215,
+  "missed": 0.0483514636313426,
+  "P_default": 0.002,
+  "P_hedge": 1.0,
+  "mean_loss_beyond": 6.17205947080857,
+  "max_loss_beyond": 85.49507985133039,
+  "tier_hist": [
+   0.2015,
+   0.0,
+   0.0,
+   0.3705,
+   0.01575,
+   0.41175,
+   0.0,
+   0.0005
+  ],
+  "orig_calls_day_mean": 18.143333333333334,
+  "orig_calls_day_max": 29.333333333333332
+ },
+ "T3_L20_rising": {
+  "cause_missed": 0.00025,
+  "cause_liq": 1.92475,
+  "calls_per_run": 11.927,
+  "missed": 0.003751991280288421,
+  "P_default": 1.925,
+  "P_hedge": 0.00025,
+  "mean_loss_beyond": 8.405067232672296,
+  "max_loss_beyond": 75.66980645692361,
+  "tier_hist": [
+   0.135,
+   0.0,
+   0.0,
+   0.5265,
+   0.15025,
+   0.026,
+   0.0195,
+   0.14275
+  ],
+  "orig_calls_day_mean": 27.5145,
+  "orig_calls_day_max": 50.0
+ },
+ "T3_L20_falling": {
+  "cause_missed": 0.0,
+  "cause_liq": 0.95925,
+  "calls_per_run": 16.604,
+  "missed": 0.06033184774753072,
+  "P_default": 0.95325,
+  "P_hedge": 1.0,
+  "mean_loss_beyond": 3.8720680596178387,
+  "max_loss_beyond": 101.1836449041807,
+  "tier_hist": [
+   0.15,
+   0.0,
+   0.0,
+   0.4035,
+   0.02075,
+   0.41475,
+   0.001,
+   0.01
+  ],
+  "orig_calls_day_mean": 18.102333333333334,
+  "orig_calls_day_max": 29.333333333333332
+ },
+ "T3_L40_rising": {
+  "cause_missed": 0.00025,
+  "cause_liq": 0.0,
+  "calls_per_run": 17.79575,
+  "missed": 0.0038351853672927523,
+  "P_default": 0.00025,
+  "P_hedge": 0.00025,
+  "mean_loss_beyond": 3.058225346924444,
+  "max_loss_beyond": 6.116450693848888,
+  "tier_hist": [
+   0.99975,
+   0.0,
+   0.0,
+   0.0,
+   0.00025,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "orig_calls_day_mean": 41.05233333333334,
+  "orig_calls_day_max": 54.0
+ },
+ "T3_L40_falling": {
+  "cause_missed": 0.0,
+  "cause_liq": 0.0,
+  "calls_per_run": 20.82575,
+  "missed": 0.04836560508024921,
+  "P_default": 0.0,
+  "P_hedge": 1.0,
+  "mean_loss_beyond": 6.158163387153543,
+  "max_loss_beyond": 22.50742826194611,
+  "tier_hist": [
+   0.20275,
+   0.0,
+   0.0,
+   0.36875,
+   0.01575,
+   0.41275,
+   0.0,
+   0.0
+  ],
+  "orig_calls_day_mean": 18.140333333333334,
+  "orig_calls_day_max": 29.333333333333332
+ }
+}

@@ -1,0 +1,75 @@
+{\setlength{\tabcolsep}{3pt}\begin{longtable}{@{}p{0.07\linewidth}p{0.09\linewidth}p{0.15\linewidth}p{0.14\linewidth}p{0.16\linewidth}p{0.1\linewidth}p{0.17\linewidth}@{}}
+\caption{S1 value move, conditional no-loss trace: Neptune client sends 100 credits to a Mars client. Probabilities are first-try success per message.}\\
+\toprule
+Time (h) & Actor & Knows & Action & Packet & Arrival & State after \\
+\midrule
+\endhead
+0.0000 & Operator D & request from client; destination state unknown & debit 100 into hold; send TRANSFER & backbone Neptune $\to$ RA $\to$ Mars, $\times$1, launch 0.0003 & 4.1141 (p 0.552) & Neptune cash 900.00; Neptune hold 100.00; Mars cash 1100.00 \\
+4.1141 & Mars ledger & first copy of T1; ID not tombstoned & credit 100; send CREDITED & backbone Mars $\to$ RA $\to$ Neptune, $\times$1, launch 4.1144 & 8.2282 (p 0.552) & Neptune cash 900.00; Mars cash 1100.00 \\
+\bottomrule
+\end{longtable}}
+
+{\setlength{\tabcolsep}{3pt}\begin{longtable}{@{}p{0.07\linewidth}p{0.09\linewidth}p{0.15\linewidth}p{0.14\linewidth}p{0.16\linewidth}p{0.1\linewidth}p{0.17\linewidth}@{}}
+\caption{S1 long-lived obligation, conditional trace: Mercury client holds a 90-day futures position, notional 100.}\\
+\toprule
+Time (h) & Actor & Knows & Action & Packet & Arrival & State after \\
+\midrule
+\endhead
+0.0000 & Mercury ledger & margin requirement 1.93 & send deposit as copies & backbone Mercury $\to$ RA $\to$ Earth, $\times$3, launch 0.0003 & 0.7671 (p 0.999) & Mercury cash 998.07; Mercury margin 1.93 \\
+0.7671 & Earth hub & payment arrived & credit account; confirm & backbone Earth $\to$ RA $\to$ Mercury, $\times$1, launch 0.7673 & 1.5341 (p 0.895) & Mercury cash 998.07; Mercury margin 1.93 \\
+0.5000 & Mercury ledger & own book; hub price one light-time old & send order as copies & backbone Mercury $\to$ RA $\to$ Earth, $\times$3, launch 0.5003 & 1.2670 (p 0.999) & Mercury cash 998.07; Mercury margin 1.93 \\
+2.4000 & Earth hub & batch cleared & report fill & backbone Earth $\to$ RA $\to$ Mercury, $\times$1, launch 2.4003 & 3.1669 (p 0.895) & Mercury cash 998.07; Mercury margin 1.93 \\
+24.00--2160.00 & Earth hub & positions, margin & daily statement $\times$90 & backbone, 1 each & 0.765 h later & unchanged \\
+1968.00 & Mercury ledger & predicted closure on pinned link & re-pin session (1 origination) & backbone Mercury $\to$ RA $\to$ Earth, $\times$1, launch 1968.0003 & 1968.72 (p 0.902) & Mercury cash 998.07; Mercury margin 1.93 \\
+2160.90 & Earth hub & expiry batch price & pay out; release margin & backbone Earth $\to$ RB $\to$ Mercury, $\times$1, launch 2160.9003 & 2161.66 (p 0.896) & Mercury cash 1000.00 \\
+2161.66 & Mercury ledger & payment arrived & credit account; confirm & backbone Mercury $\to$ RB $\to$ Earth, $\times$1, launch 2161.6598 & 2162.42 (p 0.896) & Mercury cash 1000.00 \\
+\bottomrule
+\end{longtable}}
+
+{\setlength{\tabcolsep}{3pt}\begin{longtable}{@{}p{0.07\linewidth}p{0.09\linewidth}p{0.15\linewidth}p{0.14\linewidth}p{0.16\linewidth}p{0.1\linewidth}p{0.17\linewidth}@{}}
+\caption{S1 rising price run, conditional trace: Neptune long 150 against Mars short 150; price +0.5\% per fast batch for 12 h.}\\
+\toprule
+Time (h) & Actor & Knows & Action & Packet & Arrival & State after \\
+\midrule
+\endhead
+-3.0000 & Operator D & own book; hub price one light-time old & send order as copies & backbone Neptune $\to$ RA $\to$ Earth, $\times$7, launch -2.9997 & 1.1747 (p 0.996) & Neptune cash 995.48; Neptune margin 4.52; Mars cash 997.07; Mars margin 2.93 \\
+0.0100 & Earth hub & batch cleared & report fill & backbone Earth $\to$ RA $\to$ Neptune, $\times$1, launch 0.0103 & 4.1848 (p 0.548) & Neptune cash 995.48; Neptune margin 6.03; Mars cash 996.32; Mars margin 2.18 \\
+-3.0000 & Mars ledger & own book; hub price one light-time old & send order as copies & backbone Mars $\to$ RA $\to$ Earth, $\times$3, launch -2.9997 & -2.4348 (p 1.000) & Neptune cash 0.00; Mars cash 0.00 \\
+0.0100 & Earth hub & batch cleared & report fill & backbone Earth $\to$ RA $\to$ Mars, $\times$1, launch 0.0103 & 0.5752 (p 0.922) & Neptune cash 995.48; Neptune margin 4.52; Mars cash 997.07; Mars margin 2.93 \\
+1.5000 & Earth hub & collateral below 80\\% of IM & call as copies & backbone Earth $\to$ RA $\to$ Mars, $\times$3, launch 1.5003 & 2.0652 (p 1.000) & Neptune cash 995.48; Neptune margin 5.27; Mars cash 996.32; Mars margin 2.18 \\
+2.0652 & Mars ledger & call received & debit cash; send top-up as copies & backbone Mars $\to$ RA $\to$ Earth, $\times$3, launch 2.0654 & 2.6302 (p 1.000) & Neptune cash 995.48; Neptune margin 5.27; Mars cash 996.32; Mars margin 2.93 \\
+2.6302 & Earth hub & payment arrived & credit account; confirm & backbone Earth $\to$ RA $\to$ Mars, $\times$1, launch 2.6305 & 3.1953 (p 0.922) & Neptune cash 995.48; Neptune margin 6.03; Mars cash 996.32; Mars margin 2.18 \\
+4.5000 & Earth hub & collateral below 80\\% of IM & call as copies & backbone Earth $\to$ RA $\to$ Mars, $\times$3, launch 4.5003 & 5.0651 (p 1.000) & Neptune cash 995.48; Neptune margin 6.78; Mars cash 994.81; Mars margin 1.42 \\
+5.0651 & Mars ledger & call received & debit cash; send top-up as copies & backbone Mars $\to$ RA $\to$ Earth, $\times$3, launch 5.0653 & 5.6300 (p 1.000) & Neptune cash 995.48; Neptune margin 6.78; Mars cash 994.81; Mars margin 2.93 \\
+5.6300 & Earth hub & payment arrived & credit account; confirm & backbone Earth $\to$ RA $\to$ Mars, $\times$1, launch 5.6303 & 6.1950 (p 0.922) & Neptune cash 995.48; Neptune margin 7.54; Mars cash 994.81; Mars margin 2.17 \\
+7.5000 & Earth hub & collateral below 80\\% of IM & call as copies & backbone Earth $\to$ RA $\to$ Mars, $\times$3, launch 7.5003 & 8.0650 (p 1.000) & Neptune cash 995.48; Neptune margin 8.31; Mars cash 993.28; Mars margin 1.41 \\
+8.0650 & Mars ledger & call received & debit cash; send top-up as copies & backbone Mars $\to$ RA $\to$ Earth, $\times$3, launch 8.0652 & 8.6298 (p 1.000) & Neptune cash 995.48; Neptune margin 8.31; Mars cash 993.28; Mars margin 2.93 \\
+8.6298 & Earth hub & payment arrived & credit account; confirm & backbone Earth $\to$ RA $\to$ Mars, $\times$1, launch 8.6301 & 9.1948 (p 0.922) & Neptune cash 995.48; Neptune margin 9.08; Mars cash 993.28; Mars margin 2.16 \\
+10.5000 & Earth hub & collateral below 80\\% of IM & call as copies & backbone Earth $\to$ RA $\to$ Mars, $\times$3, launch 10.5003 & 11.0649 (p 1.000) & Neptune cash 995.48; Neptune margin 9.85; Mars cash 991.74; Mars margin 1.39 \\
+11.0649 & Mars ledger & call received & debit cash; send top-up as copies & backbone Mars $\to$ RA $\to$ Earth, $\times$3, launch 11.0652 & 11.6297 (p 1.000) & Neptune cash 995.48; Neptune margin 9.85; Mars cash 991.74; Mars margin 2.93 \\
+11.6297 & Earth hub & payment arrived & credit account; confirm & backbone Earth $\to$ RA $\to$ Mars, $\times$1, launch 11.6299 & 12.1945 (p 0.922) & Neptune cash 995.48; Neptune margin 10.63; Mars cash 991.74; Mars margin 2.16 \\
+13.5000 & Earth hub & collateral below 80\\% of IM & call as copies & backbone Earth $\to$ RA $\to$ Mars, $\times$3, launch 13.5003 & 14.0648 (p 1.000) & Neptune cash 995.48; Neptune margin 10.63; Mars cash 990.96; Mars margin 2.16 \\
+14.0648 & Mars ledger & call received & debit cash; send top-up as copies & backbone Mars $\to$ RA $\to$ Earth, $\times$3, launch 14.0651 & 14.6295 (p 1.000) & Neptune cash 995.48; Neptune margin 10.63; Mars cash 990.96; Mars margin 2.93 \\
+14.6295 & Earth hub & payment arrived & credit account; confirm & backbone Earth $\to$ RA $\to$ Mars, $\times$1, launch 14.6297 & 15.1942 (p 0.922) & Neptune cash 995.48; Neptune margin 10.63; Mars cash 990.96; Mars margin 2.93 \\
+\bottomrule
+\end{longtable}}
+
+{\setlength{\tabcolsep}{3pt}\begin{longtable}{@{}p{0.07\linewidth}p{0.09\linewidth}p{0.15\linewidth}p{0.14\linewidth}p{0.16\linewidth}p{0.1\linewidth}p{0.17\linewidth}@{}}
+\caption{S1 falling price run, conditional trace: Neptune long 150 against Mars short 150; price -0.5\% per fast batch for 12 h.}\\
+\toprule
+Time (h) & Actor & Knows & Action & Packet & Arrival & State after \\
+\midrule
+\endhead
+-3.0000 & Operator D & own book; hub price one light-time old & send order as copies & backbone Neptune $\to$ RA $\to$ Earth, $\times$7, launch -2.9997 & 1.1747 (p 0.996) & Neptune cash 995.48; Neptune margin 4.52; Mars cash 997.07; Mars margin 2.93 \\
+0.0100 & Earth hub & batch cleared & report fill & backbone Earth $\to$ RA $\to$ Neptune, $\times$1, launch 0.0103 & 4.1848 (p 0.548) & Neptune cash 995.48; Neptune margin 3.03; Mars cash 997.07; Mars margin 4.43 \\
+-3.0000 & Mars ledger & own book; hub price one light-time old & send order as copies & backbone Mars $\to$ RA $\to$ Earth, $\times$3, launch -2.9997 & -2.4348 (p 1.000) & Neptune cash 0.00; Mars cash 0.00 \\
+0.0100 & Earth hub & batch cleared & report fill & backbone Earth $\to$ RA $\to$ Mars, $\times$1, launch 0.0103 & 0.5752 (p 0.922) & Neptune cash 995.48; Neptune margin 4.52; Mars cash 997.07; Mars margin 2.93 \\
+3.0000 & Earth hub & collateral below 80\\% of IM & call as copies & backbone Earth $\to$ RA $\to$ Neptune, $\times$7, launch 3.0003 & 7.1747 (p 0.996) & Neptune cash 993.98; Neptune margin 1.54; Mars cash 997.07; Mars margin 5.91 \\
+7.1747 & Operator D & call received & debit cash; send top-up as copies & backbone Neptune $\to$ RA $\to$ Earth, $\times$7, launch 7.1750 & 11.3492 (p 0.996) & Neptune cash 993.98; Neptune margin 0.85; Mars cash 997.07; Mars margin 8.10 \\
+11.3492 & Earth hub & payment arrived & credit account; confirm & backbone Earth $\to$ RA $\to$ Neptune, $\times$1, launch 11.3495 & 15.5237 (p 0.548) & Neptune cash 993.98; Neptune margin 0.12; Mars cash 997.07; Mars margin 8.83 \\
+13.5000 & Earth hub & collateral below 80\\% of IM & call as copies & backbone Earth $\to$ RA $\to$ Neptune, $\times$7, launch 13.5003 & 17.6744 (p 0.996) & Neptune cash 989.58; Neptune margin 0.12; Mars cash 997.07; Mars margin 8.83 \\
+17.6744 & Operator D & call received & debit cash; send top-up as copies & backbone Neptune $\to$ RA $\to$ Earth, $\times$7, launch 17.6747 & 21.8486 (p 0.996) & Neptune cash 989.58; Neptune margin 4.52; Mars cash 997.07; Mars margin 8.83 \\
+21.8486 & Earth hub & payment arrived & credit account; confirm & backbone Earth $\to$ RA $\to$ Neptune, $\times$1, launch 21.8489 & 26.0228 (p 0.548) & Neptune cash 989.58; Neptune margin 4.52; Mars cash 997.07; Mars margin 8.83 \\
+\bottomrule
+\end{longtable}}
+

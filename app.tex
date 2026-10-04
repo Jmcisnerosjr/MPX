@@ -1,0 +1,267 @@
+\clearpage
+\appendix
+\section*{Evidence appendix}
+\addcontentsline{toc}{section}{Evidence appendix}
+\small
+Scripts: \texttt{mpx.py}, \texttt{e1\_orbits}, \texttt{e4\_scan}, \texttt{e4\_analyze}, \texttt{hub\_loss}, \texttt{s3\_e2\_e5}, \texttt{verify} (toolkit), and \texttt{design}, \texttt{tiers}, \texttt{scenarios}, \texttt{runs\_all}, \texttt{e5\_runs} (this paper), all on the frozen v1.3 data. Scenario actors start with 1{,}000 credits per client account. Assumptions are A1--A8 (\cref{tab:assume}). Every message of every run (682 in total: sender, receiver, route, copies, originations, launches, send and arrival times) is listed in \texttt{out/all\_messages.csv}.
+
+\section{S1: Scenario traces}\label{app:s1}
+Every trace in this section is \textbf{conditional}: no packet is lost, maintenance and geometry are applied, and the run starts at the epoch. Probabilities in the traces are first-try success per message (copies per R3); they are labelled ``p''. The four scenarios run separately, so no encumbrance is shared between them.
+
+\textbf{Scenarios.} \emph{Value move:} a Neptune client sends 100 credits to a Mars client (R5). \emph{Long-lived obligation:} a Mercury client holds a 90-day futures position of notional 100, with daily statements and an expiry payout. \emph{Rising and falling runs:} a Neptune client, via its operator, is long 150 against a Mars member short 150, and the price moves $\pm0.5\%$ per fast batch for 12 hours.
+
+\begin{table}[H]
+\centering
+\caption{S1 summary. Asset-hours split by use; completion is conditional, with the probability that it holds.}\label{tab:s1sum}
+\small
+\begin{tabular}{@{}p{0.12\linewidth}p{0.12\linewidth}p{0.09\linewidth}p{0.18\linewidth}p{0.16\linewidth}p{0.17\linewidth}@{}}
+\toprule
+Scenario & Completion & Packets (orig.\,/ launches) & Asset-hours by asset & Exposure & Capital used \\
+\midrule
+Value move & $8.23\h$; holds w.p.\ $0.305$ (both legs first try) & 2 / 8 & held credits 822.8 & none (value never in two places) & 100 credits held \\
+Long-lived & $2162.4\h$; deadline legs on time w.p.\ $0.998$ & 101 / 404 & margin 4{,}174.8; credits in flight 3.0 & none & margin 1.93 \\
+Rising run & $15.19\h$; deadline legs on time w.p.\ $0.991$ & 47 / 188 & margin 435.2; in flight 3.4 & peak margin gap 2.32 (Mars) & margin 7.45; liquidity drawn 6.11 (13.6\%) \\
+Falling run & $26.02\h$; deadline legs on time w.p.\ $0.980$ & 42 / 168 & margin 367.5; in flight 24.6 & peak gap 5.90 (Neptune); collateral stays $\ge0.12$ & margin 7.45; liquidity drawn 5.90 (13.1\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+If a message misses its conditional time, delivery still follows by hop retries: one endpoint attempt from Neptune is completed with probability $0.9667$, and four attempts fail together with probability $1.2\times10^{-6}$ (E2).
+
+\textbf{Scale.} With the worst-day batch traffic of 468 originations, 132 remain. That carries, on the worst day of 200 years, all nine settlements in every batch, plus 66 more value moves (2 originations each), or 101 on an average day. Positions and variation margin live inside the hub and cost no originations, so the number of open positions is limited only by members' margin and liquidity. \emph{(Map to the brief's Section 6 scale requirement.)}
+
+\textbf{Binding variations.} The quota binds after 66 extra value moves on the worst day. Liquidity binds when the total price move reaches $30\%$ (steps of $3.33\%$ rising, $4.36\%$ falling). Holding the long-lived position at Ceres through the 190-day Relay A closure without R1 fills the 10{,}000-packet queue after $16.7$ days.
+
+\input{traces_s1}
+
+\textbf{Cross-planet swap (R8b).} An Earth client buys an asset held on Neptune's ledger at hour 0: Earth locks credits (0.00), Neptune sees it and locks the asset (4.18), Earth learns of the lock (8.35), Earth's claim reveals the secret at Neptune (12.52), and Neptune's claim releases the credits at Earth (16.70). It uses 4 originations and 16 launches; the locks must last at least to hours $13.5$ (Neptune) and $17.7$ (Earth).
+
+\textbf{Local markets (R8c).} Each operator's local price is the hub price one light-time earlier.
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Settlement & Peak basis, rising & Peak basis, falling & Band & Inside \\
+\midrule
+Mars & 0.50\% & 0.50\% & 0.73\% & yes \\
+Jupiter & 0.50\% & 0.50\% & 0.87\% & yes \\
+Saturn & 0.50\% & 0.50\% & 1.07\% & yes \\
+Uranus & 0.99\% & 1.01\% & 1.46\% & yes \\
+Neptune & 1.49\% & 1.52\% & 1.82\% & yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{S2: Stress and recovery}\label{app:s2}
+\textbf{Incident chosen:} forced loss of every launch to or from Relay A whose flight overlaps hours 0--6, added to the falling run, which holds a price-dependent product. \textbf{Why this hurts most.} \emph{Kind:} forced loss defeats copies, because every copy on the route is lost together. \emph{Node:} Relay A carries the best route of seven of the eight remote settlements at hour 0 (S3). \emph{Start time:} hour 0 overlaps the scheduled Relay B--Neptune maintenance (hours 2--26), so Neptune, the long side of a falling run, has no working relay at all while its losses grow.
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}p{0.24\linewidth}p{0.16\linewidth}p{0.16\linewidth}p{0.12\linewidth}p{0.16\linewidth}@{}}
+\toprule
+Run & First call lands & First top-up final & Run complete & Neptune collateral min \\
+\midrule
+No incident & 07:10 & 11:20 & $26.0\h$ & 0.12 \\
+Incident, with maintenance & 10:10 (held for A) & 14:20 & $29.0\h$ & 0.12 \\
+Incident, no maintenance & 07:55 (via B) & 12:05 & $27.5\h$ & 0.12 \\
+Sensitivity: 12-hour incident & 16:10 & 20:20 & $35.0\h$ & 0.12 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Lost service:} with maintenance, Neptune has no working relay for 6 hours and its first call lands 3.0 hours late; without maintenance it reroutes through B and loses 45 minutes. \textbf{Obligations:} Mars's short position is untouched; Neptune's margin call is held, not lost, and its top-up obligation starts on receipt; no order or transfer changes state, and no member defaults, because the isolation (6 h) is shorter than Neptune's MPOR ($12.9\h$). \textbf{Recovery,} meaning financial service resumed: Neptune's orders for the 6:00 full batch had to leave by about hour 5.8, while A was still forcing loss, so Neptune misses that batch; financial service resumes with the 12:00 full batch, whose order and margin call both land on time, and Neptune's top-up is final at 14:20. Without maintenance, Neptune re-pins to B at the incident notice and misses no batch. With a 12-hour incident it misses the 6:00 and 12:00 batches and resumes at 18:00. No manual step is needed. The 12-hour incident delays everything by 9 hours but still leaves collateral positive; beyond $12.9\h$, R8 hedges instead of defaulting. \textbf{Default during an incident:} in E5 Tier 3 falling, Neptune is isolated for 72 hours while prices fall $15\%$ with a $10\%$ jump. Neptune is hedged in $100\%$ of runs, Bank A defaults in $0.2\%$, and the waterfall reaches recovery tools in $0.05\%$; no obligation is lost.
+
+\section{S3: Access everywhere}\label{app:s3}
+Every transaction type MPX supports needs one authority, and for all of them it is the Earth hub: orders, fills and prices (clearing), margin and variation margin (the hub's ledger), and transfers into the hub. Ledger-to-ledger transfers and swaps use the settlement-pair routes of E4. The table therefore gives one route per settlement, valid for every transaction type.
+\begin{table}[H]
+\centering
+\caption{Best route into the Earth hub (one-way h; 24-hour availability is $1.000$ everywhere at both hours).}
+\small
+\begin{tabular}{@{}lllrr@{}}
+\toprule
+Settlement & Route, hour 0 & Route, hour 300 & One-way, h 0 & One-way, h 300 \\
+\midrule
+Mercury & via A & via A & 0.7671 & 0.7296 \\
+Venus & via A & via A & 0.6761 & 0.6278 \\
+Earth & local & local & 0 & 0 \\
+Mars & via A & via A & 0.5651 & 0.5573 \\
+Ceres & via A & via A & 0.5562 & 0.5374 \\
+Jupiter & via B & via B & 0.8487 & 0.8371 \\
+Saturn & via A & via A & 1.3236 & 1.3144 \\
+Uranus & via A & via A & 2.6376 & 2.6120 \\
+Neptune & via A & via A & 4.1747 & 4.1675 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Value-move timelines} for a client funded with 1{,}000 credits sending 100 to the hub at hour 0: best (Ceres) credited $0.556\h$, final $1.112\h$; median (Jupiter) $0.849$ and $1.697\h$; worst (Neptune) $4.175$ and $8.349\h$. Each uses 2 originations and holds 100 credits until final; the step-by-step traces follow.
+
+\input{traces_s3}
+
+\section{E1: Orbits}\label{app:e1}
+The epoch positions of all 11 bodies match the brief to at most $4.7\times10^{-7}\AU$ (limit $10^{-5}$); every body returns to its epoch position after one period within $10^{-13}\AU$ and stays within $[a(1-e),a(1+e)]$. Light-time matches an independent root finder to $0.0008$\,ms. \textbf{Receiver motion:} Neptune to Relay A at $t_e=1\,$s arrives at $3{:}51{:}42.212$, $0.594$\,s later than with a frozen receiver; Earth$\to$A and A$\to$Earth legs differ by $0.201$\,s. \textbf{Sensitivity:} the fixed point converges to $10^{-9}\h$ in three iterations; one iteration leaves the $0.594$\,s error; the brief's 1\,ms tolerance is met at iteration two.
+
+\section{E2: Probability and traffic}\label{app:e2}
+\begin{table}[H]
+\centering
+\caption{Direct service to the hub at hour 0: success by the one-way deadline with $n$ copies.}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+From & min & $p$ lost & $n{=}1$ & $n{=}2$ & $n{=}4$ & $n{=}12$ \\
+\midrule
+Mercury & 10.62 & 0.0971 & 0.9029 & 0.9906 & 0.9999 & 1.0000 \\
+Venus & 3.35 & 0.0317 & 0.9683 & 0.9990 & 1.0000 & 1.0000 \\
+Mars & 14.35 & 0.1289 & 0.8711 & 0.9834 & 0.9997 & 1.0000 \\
+Ceres & 22.87 & 0.1975 & 0.8025 & 0.9610 & 0.9985 & 1.0000 \\
+Jupiter & 50.06 & 0.3822 & 0.6178 & 0.8540 & 0.9787 & 1.0000 \\
+Saturn & 70.35 & 0.4917 & 0.5083 & 0.7582 & 0.9416 & 0.9998 \\
+Uranus & 158.20 & 0.7817 & 0.2183 & 0.3890 & 0.6267 & 0.9480 \\
+Neptune & 240.17 & 0.9008 & 0.0992 & 0.1886 & 0.3417 & 0.7147 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Backbone hop abandonment} is $p^4$ per hop; route abandonment at hour 0 is $1-\prod(1-p_i^4)$, from $5.2\times10^{-6}$ (Ceres) to $3.33\times10^{-2}$ (Neptune: hop losses $0.427$ and $0.044$). The exact delivery CDF matches Monte Carlo ($0.8066$ vs $0.8068$). \textbf{Outcome when direct packets do not arrive:} the direct service has no receipt, so the sender learns nothing; MPX never relies on it for an obligation, only for incident notices that the backbone repeats. \textbf{Packets per day:} backbone 398 originations on average and 468 on the worst day; each makes at most 4 launches per hop plus one receipt per arriving copy, at most 8 launches per link crossed. Direct: 0 on a normal day, at most 8 notices on an incident day. Total on the worst incident day: 476. \textbf{Quotas:} backbone originations peak at 468 a day over 200 years (mean 398) of 600; MPX uses the direct service only for incident notices, one per affected settlement per incident, within the direct service's 12-copy daily allowance (A8). \textbf{Link capacity:} $600\times8$ launch-seconds a day is at most $5.6\%$ of any link. Aggregate receipts (R8d) cut order-copy receipt launches from 612 to 184 a day; this eases link load but not the origination quota. \textbf{Sensitivity:} at loss coefficients $0.015$, $0.020$ and $0.025$ per AU, Neptune's first-try success is $0.636$, $0.548$ and $0.471$, needing 6, 7 and 9 copies.
+
+\section{E3: Balances and capital}\label{app:e3}
+\begin{table}[H]
+\centering
+\caption{Balances over time (credits; N = Neptune, M = Mars). Each row sums to the funding total.}
+\small
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Scenario & Time & N.\ cash & N.\ held/margin & In flight & M.\ cash & M.\ margin \\
+\midrule
+Value move & 0 & 900 & 100 held & 100 & 1000 & -- \\
+ & 4.11 & 900 & 100 held & 0 & 1100 & -- \\
+ & 8.23 & 900 & 0 & 0 & 1100 & -- \\
+Rising run & 0 & 995.48 & 4.52 & 0 & 997.07 & 2.93 \\
+ & 12 & 995.48 & 10.63 & 0 & 991.74 & 2.16 \\
+ & end & 995.48 & 10.63 & 0 & 990.96 & 2.93 \\
+Falling run & 0 & 995.48 & 4.52 & 0 & 997.07 & 2.93 \\
+ & 12 & 993.98 & 0.12 & 0 & 997.07 & 8.83 \\
+ & end & 989.58 & 4.52 & 0 & 997.07 & 8.83 \\
+\midrule
+\multicolumn{7}{@{}p{0.95\linewidth}@{}}{Long-lived (Mercury cash; Mercury margin at hub): hour 0: 998.07 / 0 with 1.93 in flight; hour 0.77: 998.07 / 1.93;} \\
+\multicolumn{7}{@{}p{0.95\linewidth}@{}}{hour 2160.9: 998.07 / 0 with 1.93 in flight; hour 2161.7: 1000 / 0 (final at 2162.4). Sum 1{,}000 throughout.} \\
+\bottomrule
+\end{tabular}
+\end{table}
+In the value move, ``held'' is a memo against the 100 already in flight or credited, not a second balance. In the price runs, variation margin moves between the two margin accounts inside the hub and nets to zero. The long-lived run holds 1.93 at the hub for 2{,}160 hours.
+
+\begin{table}[H]
+\centering
+\caption{Capital for the E5 member book (millions of credits; $\sigma=30\%$, MPOR $=$ worst round trip $+\,G+B$).}
+\small
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Member & Settlement & Pos. & MPOR (h) & IM & Stress & Share \\
+\midrule
+Bank A & Earth & $+600$ & 2.50 & 7.97 & 10.28 & 5.88 \\
+Bank B & Mars & $-400$ & 5.42 & 7.82 & 10.09 & 5.77 \\
+Operator C & Jupiter & $-350$ & 6.17 & 7.30 & 9.42 & 5.39 \\
+Operator D & Neptune & $+150$ & 12.89 & 4.52 & 5.83 & 3.34 \\
+\midrule
+\multicolumn{7}{@{}l}{Margin 27.61; fund (Cover 2) $10.28+10.09=20.36$; skin 5.09;} \\
+\multicolumn{7}{@{}l}{escrow 3.34; operating capital 1.00; total 57.40.} \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\centering
+\caption{Accounts in E3: source, owner, location, liability and encumbrance.}
+\small
+\begin{tabular}{@{}p{0.13\linewidth}p{0.12\linewidth}p{0.16\linewidth}p{0.22\linewidth}p{0.21\linewidth}@{}}
+\toprule
+Account & Owner & Location & Liability & Encumbrance \\
+\midrule
+cash & client & home ledger & ledger owes client & free \\
+hold (memo) & client & source ledger & none; marks value already sent & transfer $T$ until signed decision \\
+in flight & client & between ledgers & source until credited & transfer $T$ \\
+margin & member & hub & hub owes member & initial and variation margin \\
+fund, skin, escrow & members, MPX & hub & hub owes contributors & default waterfall \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Conservation} (checked in every scenario and epoch by the engine). Every ledger event is a double entry that sums to zero at its instant, so the total is constant. A unit is spendable only in a \emph{cash} account; holds and margin are encumbered and in-flight value is spendable by no one, so no unit is ever available in two places (G4). Capital in use peaks at 13.56 credits in the price runs, made up of margin plus liquidity drawn.
+
+\section{E4: Long-horizon scan}\label{app:e4}
+\textbf{We claim Tier 3.} All 38 directed links over 200 Julian years, hourly. \textbf{What the step could miss:} by G2, a closure leaves a sample below $0.10+V/2$ ($0.10071\AU$ for Mercury); every such sample is refined to 1 minute, so only a dip shallower than $V\times1\,\mathrm{min}/2 = 1.2\times10^{-5}\AU$ could hide. The shortest closure found lasts $160.34\h$, 160 times the step. Observed clearance rates reach at most $0.886V$. \textbf{Refined boundary (Tier 2):} Earth$\to$Relay A first closes at hour $6667.9$; its boundary is bracketed between samples one minute apart, bisected to a tolerance of $10^{-7}\h$ (0.36\,ms), and checked open 1\,s before and closed 1\,s after (168 boundaries sampled, none bad). \emph{Effect on packets in flight:} the brief checks a link at launch, over the segment from the sender at launch to the receiver at arrival, so a packet launched before the boundary flies and arrives normally. A packet ready after it holds or takes the other relay; R1 re-pins the session before the boundary, so none waits.
+\begin{table}[H]
+\centering
+\caption{Per settlement over 200 years: closures per relay link, link availability, and one-way delay range to the Earth hub.}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Settlement & Closures per link & Shortest / longest (h) & Open fraction & Delay to Earth (h) \\
+\midrule
+Mercury & 788--789 & 160.3 / 266.8 & 0.909 & 0.58--1.40 \\
+Venus & 283 & 320.4 / 345.2 & 0.946 & 0.54--1.41 \\
+Earth & 158 & 464.3 / 493.5 & 0.957 & -- \\
+Mars & 64 & 664.1 / 1085.9 & 0.969 & 0.42--1.46 \\
+Ceres & 2 & 1548.8 / 4566.3 & 0.995 & 0.28--1.53 \\
+Jupiter & 25 & 1016.7 / 1243.5 & 0.983 & 0.55--1.84 \\
+Saturn & 35--36 & 222.0 / 749.3 & 0.990 & 1.12--2.41 \\
+Uranus & 40 & 531.8 / 571.1 & 0.987 & 2.41--3.79 \\
+Neptune & 41 & 315.8 / 528.6 & 0.990 & 3.99--5.19 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Poorest service:} the longest delay is Neptune to Earth, $5.19\h$ at year $74.17$; the least available link is Mercury's, open $90.9\%$ of the time, yet Mercury's best route stays available because the other relay is always open. Every settlement's best route was open at every sampled hour (availability $1.000$); A--B never closes (minimum $1.99992\AU$); zero hours with both relay links closed. \textbf{Sensitivity:} the Two-Relay bound is $\arcsin(3.606\rho)$, so connectivity holds for any exclusion radius up to $0.196\AU$: $16.8^\circ$ at $0.08$, $21.1^\circ$ at $0.10$, $25.6^\circ$ at $0.12\AU$.
+
+\section{E5: Later starting dates}\label{app:e5}
+\textbf{We claim Tier 3.} Orbits advance from the original epoch; only balances reset; the original maintenance and the S2 incident are not replayed.
+\begin{table}[H]
+\centering
+\caption{Tier 1: one-way delay (h) on the routes our scenarios use; 24-hour availability is $1.000$ on every route at every offset.}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Offset & Neptune$\to$Earth & Mars$\to$Earth & Mercury$\to$Earth \\
+\midrule
+Hour 0 & 4.1747 & 0.5651 & 0.7671 \\
++1 year & 4.8068 & 0.7864 & 0.8906 \\
++10 years & 4.3268 & 0.6991 & 0.7487 \\
++100 years & 4.6250 & 0.6417 & 0.7048 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Tier 2, difficult epoch:} year $74.17$, chosen because Neptune's delay to Earth peaks there at $5.19\h$ (the worst of 200 years), which slows every Neptune margin call. The harder price run there is the falling one, because Neptune holds the long side and its top-ups take longest; it completes in $30.00\h$. \textbf{Tier 3:} the rising run there completes in $17.95\h$; both are in the table below.
+\begin{table}[H]
+\centering
+\caption{All scenarios rerun with orbits advanced and balances reset. Completion in hours (originations).}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Start & Value move & Long-lived & Rising & Falling \\
+\midrule
+Hour 0 & 8.23 (2) & 2162.4 (101) & 15.19 (47) & 26.02 (42) \\
++1 year & 9.53 (2) & 2162.4 (101) & 17.36 (41) & 29.42 (47) \\
++10 years & 8.83 (2) & 2162.1 (102) & 15.60 (47) & 26.48 (42) \\
++100 years & 8.64 (2) & 2162.4 (102) & 15.42 (48) & 28.87 (47) \\
+Difficult (year 74.17) & 8.96 (2) & 2162.5 (101) & 17.95 (42) & 30.00 (50) \\
+\bottomrule
+\end{tabular}
+\end{table}
+The difficult epoch has the worst Neptune delay of 200 years ($5.19\h$). Funding is conserved in all 20 runs; the long-lived run re-pins 1 or 2 times depending on the epoch.
+
+\textbf{Monte Carlo at the difficult epoch} (4{,}000 runs of 72 h per case). Tier 2: Gaussian prices with a $\pm5\%$ trend. Tier 3: Student-$t_3$ prices with a $\pm15\%$ trend, a $10\%$ jump and a 72-hour Neptune isolation.
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}p{0.17\linewidth}rp{0.15\linewidth}p{0.12\linewidth}p{0.15\linewidth}p{0.15\linewidth}@{}}
+\toprule
+Case (rise / fall) & Liq. & P(default) & P(hedge) & Calls missed & Recovery used \\
+\midrule
+Tier 2 & 30\% & 0 / 0 & 0 / 0 & 0.38\% / 0.19\% & 0 / 0 \\
+Tier 3 & 30\% & 18.45\% / 0.2\% & 0 / 100\% & 0.38\% / 4.8\% & 0.03\% / 0.05\% \\
+Tier 3 & 20\% & 193\% / 95\% & 0 / 100\% & 0.38\% / 6.0\% & 14.3\% / 1.0\% \\
+Tier 3 & 40\% & 0.03\% / 0 & 0 / 100\% & 0.38\% / 4.8\% & 0 / 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+P(default) counts expected defaults per run and can exceed $100\%$ when both short members default. \textbf{Margin sensitivity:} the Gaussian multiplier $2.33$ is breached $0.99\%$ under Gaussian and $1.38\%$ under $t_3$ prices; $2.62$ gives $0.45\%$ and $1.00\%$. Margin calls peak at 56 originations a day, inside the 132 reserved.
+
+\section{Verification}\label{app:verify}
+\texttt{verify.py}: all 8 checks pass (light-time, closure boundaries, Lipschitz bound, Two-Relay half-angle, A--B clearance, two Monte Carlo cross-checks, maintenance overlap). The scenario engine asserts double-entry conservation on every event of every run.
+
+\textbf{Independent cross-validation.} The routing, loss and abandonment rules were implemented twice, in Python (the toolkit) and separately in JavaScript (our interactive simulator), from the brief alone. At hour 0 they agree to the last reported digit: Neptune to Earth $4.1747\h$, first-try success $0.5476$, abandonment $3.33\times10^{-2}$; Mars to Earth $0.5651\h$, $0.9218$ and $5.40\times10^{-6}$.
+\end{document}
